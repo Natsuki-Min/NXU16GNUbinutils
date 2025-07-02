@@ -1636,6 +1636,8 @@ enum bfd_architecture
 #define bfd_mach_mrisc2        2
 #define bfd_mach_ms2           3
   bfd_arch_pj,
+  bfd_arch_nxu16,
+#define bfd_mach_nxu16         1
   bfd_arch_avr,       /* Atmel AVR microcontrollers.  */
 #define bfd_mach_avr1          1
 #define bfd_mach_avr2          2

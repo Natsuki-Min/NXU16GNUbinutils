@@ -367,13 +367,13 @@ DEJATOOL = $(PACKAGE)
 RUNTESTDEFAULTFLAGS = --tool $$tool --srcdir $$srcdir
 DIST_SUBDIRS = $(SUBDIRS)
 transform = s/^ld-new$$/$(installed_linker)/;s&^&avr-&
-ACLOCAL = ${SHELL} /home/kali/binutils-gdb/missing aclocal-1.15
+ACLOCAL = ${SHELL} /home/kali/NXU16GNUbinutils/missing aclocal-1.15
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 0
 AR = ar --plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so --plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so
-AUTOCONF = ${SHELL} /home/kali/binutils-gdb/missing autoconf
-AUTOHEADER = ${SHELL} /home/kali/binutils-gdb/missing autoheader
-AUTOMAKE = ${SHELL} /home/kali/binutils-gdb/missing automake-1.15
+AUTOCONF = ${SHELL} /home/kali/NXU16GNUbinutils/missing autoconf
+AUTOHEADER = ${SHELL} /home/kali/NXU16GNUbinutils/missing autoheader
+AUTOMAKE = ${SHELL} /home/kali/NXU16GNUbinutils/missing automake-1.15
 AWK = gawk
 CATALOGS = 
 CATOBJEXT = 
@@ -438,13 +438,13 @@ LIBTOOL = $(SHELL) $(top_builddir)/libtool
 # which may have the form: LIB_PATH=/lib:/usr/local/lib.  This can be set
 # when the linker is configured via the --with-lib-path configure switch.
 LIB_PATH = 
-LIPO = 
+LIPO = lipo
 LN_S = ln -s
 LTLIBICONV = -liconv
 LTLIBINTL = 
 LTLIBOBJS = 
 MAINT = #
-MAKEINFO = makeinfo --split-size=5000000
+MAKEINFO = makeinfo --split-size=5000000 --split-size=5000000
 MKDIR_P = /usr/bin/mkdir -p
 MKINSTALLDIRS = $(top_builddir)/../../ld/../mkinstalldirs
 MSGFMT = :
@@ -465,7 +465,7 @@ PACKAGE_TARNAME = ld
 PACKAGE_URL = 
 PACKAGE_VERSION = 2.44.50
 PATH_SEPARATOR = :
-PKG_CONFIG = 
+PKG_CONFIG = /usr/bin/pkg-config
 PKG_CONFIG_LIBDIR = 
 PKG_CONFIG_PATH = 
 POSUB = 
@@ -490,11 +490,11 @@ XGETTEXT = :
 YACC = `if [ -f ../bison/bison ]; then echo ../bison/bison -y -L$(srcdir)/../bison/; else echo bison -y; fi`
 YFLAGS = -d
 ZSTD_CFLAGS = 
-ZSTD_LIBS = 
-abs_builddir = /home/kali/binutils-gdb/buildavr/ld
-abs_srcdir = /home/kali/binutils-gdb/buildavr/ld/../../ld
-abs_top_builddir = /home/kali/binutils-gdb/buildavr/ld
-abs_top_srcdir = /home/kali/binutils-gdb/buildavr/ld/../../ld
+ZSTD_LIBS = -lzstd 
+abs_builddir = /home/kali/NXU16GNUbinutils/buildavr/ld
+abs_srcdir = /home/kali/NXU16GNUbinutils/buildavr/ld/../../ld
+abs_top_builddir = /home/kali/NXU16GNUbinutils/buildavr/ld
+abs_top_srcdir = /home/kali/NXU16GNUbinutils/buildavr/ld/../../ld
 ac_ct_CC = 
 ac_ct_CXX = 
 ac_ct_DUMPBIN = 
@@ -530,7 +530,7 @@ htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
 install_as_default = yes
-install_sh = ${SHELL} /home/kali/binutils-gdb/install-sh
+install_sh = ${SHELL} /home/kali/NXU16GNUbinutils/install-sh
 installed_linker = ld.bfd
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
@@ -837,6 +837,7 @@ ALL_EMULATION_SOURCES = \
 	emn10300.c \
 	emoxiebox.c \
 	emsp430X.c \
+	enxu16elf.c \
 	emsp430elf.c \
 	ends32belf.c \
 	ends32belf16m.c \
@@ -1534,6 +1535,7 @@ include ./$(DEPDIR)/emn10200.Po
 include ./$(DEPDIR)/emn10300.Po
 include ./$(DEPDIR)/emoxiebox.Po
 include ./$(DEPDIR)/emsp430X.Po
+include ./$(DEPDIR)/enxu16elf.Po
 include ./$(DEPDIR)/emsp430elf.Po
 include ./$(DEPDIR)/ends32belf.Po
 include ./$(DEPDIR)/ends32belf16m.Po

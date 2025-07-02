@@ -32,7 +32,7 @@ datadir = ${datarootdir}
 VPATH = ../../../../readline/readline/examples
 top_srcdir = ../../../../readline/readline
 #BUILD_DIR = .
-BUILD_DIR = /home/kali/binutils-gdb/buildavr/readline/readline
+BUILD_DIR = /home/kali/NXU16GNUbinutils/buildavr/readline/readline
 installdir = $(datadir)/readline
 
 INSTALL = /usr/bin/install -c

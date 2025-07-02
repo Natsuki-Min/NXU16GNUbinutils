@@ -3288,6 +3288,15 @@ Morpho MT - 8 bit immediate relocation.
 @deffnx {} BFD_RELOC_MSP430_SUB_ULEB128
 msp430 specific relocation codes.
 @end deffn
+@deffn {} BFD_RELOC_NXU16_IMM3
+@deffnx {} BFD_RELOC_NXU16_IMM6
+@deffnx {} BFD_RELOC_NXU16_IMM8
+@deffnx {} BFD_RELOC_NXU16_IMM16
+@deffnx {} BFD_RELOC_NXU16_MEM_Dadr
+@deffnx {} BFD_RELOC_NXU16_FLASH_Cadr
+@deffnx {} BFD_RELOC_NXU16_FLASH_Radr
+msp430 specific relocation codes.
+@end deffn
 @deffn {} BFD_RELOC_PRU_U16
 PRU LDI 16-bit unsigned data-memory relocation.
 @end deffn

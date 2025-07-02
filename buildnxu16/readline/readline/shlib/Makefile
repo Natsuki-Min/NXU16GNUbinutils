@@ -32,7 +32,7 @@ datarootdir = ${prefix}/share
 srcdir = ../../../../readline/readline/shlib
 VPATH = ../../../../readline/readline
 topdir = ../../../../readline/readline
-BUILD_DIR = /home/kali/binutils-gdb/buildnxu16/readline/readline
+BUILD_DIR = /home/kali/NXU16GNUbinutils/buildnxu16/readline/readline
 
 INSTALL = /usr/bin/install -c
 INSTALL_PROGRAM = /usr/bin/install -c

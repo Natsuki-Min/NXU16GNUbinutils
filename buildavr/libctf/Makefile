@@ -422,13 +422,13 @@ distuninstallcheck_listfiles = find . -type f -print
 am__distuninstallcheck_listfiles = $(distuninstallcheck_listfiles) \
   | sed 's|^\./|$(prefix)/|' | grep -v '$(infodir)/dir$$'
 distcleancheck_listfiles = find . -type f -print
-ACLOCAL = ${SHELL} /home/kali/binutils-gdb/missing aclocal-1.15
+ACLOCAL = ${SHELL} /home/kali/NXU16GNUbinutils/missing aclocal-1.15
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 0
 AR = ar --plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so --plugin /usr/libexec/gcc/x86_64-linux-gnu/14/liblto_plugin.so
-AUTOCONF = ${SHELL} /home/kali/binutils-gdb/missing autoconf
-AUTOHEADER = ${SHELL} /home/kali/binutils-gdb/missing autoheader
-AUTOMAKE = ${SHELL} /home/kali/binutils-gdb/missing automake-1.15
+AUTOCONF = ${SHELL} /home/kali/NXU16GNUbinutils/missing autoconf
+AUTOHEADER = ${SHELL} /home/kali/NXU16GNUbinutils/missing autoheader
+AUTOMAKE = ${SHELL} /home/kali/NXU16GNUbinutils/missing automake-1.15
 AWK = gawk
 CATALOGS = 
 CATOBJEXT = 
@@ -437,7 +437,7 @@ CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2    
 CPP = gcc -E
 CPPFLAGS = 
-CTF_LIBADD = -L/home/kali/binutils-gdb/buildavr/libctf/../libiberty -liberty 
+CTF_LIBADD = -L/home/kali/NXU16GNUbinutils/buildavr/libctf/../libiberty -liberty 
 CYGPATH_W = echo
 DATADIRNAME = 
 DEFS = -DHAVE_CONFIG_H
@@ -513,10 +513,10 @@ VERSION_FLAGS_NOBFD = -Wl,--version-script='libctf-nobfd.ver'
 WARN_PEDANTIC = -pedantic -Wno-long-long
 WERROR = 
 XGETTEXT = :
-abs_builddir = /home/kali/binutils-gdb/buildavr/libctf
-abs_srcdir = /home/kali/binutils-gdb/buildavr/libctf/../../libctf
-abs_top_builddir = /home/kali/binutils-gdb/buildavr/libctf
-abs_top_srcdir = /home/kali/binutils-gdb/buildavr/libctf/../../libctf
+abs_builddir = /home/kali/NXU16GNUbinutils/buildavr/libctf
+abs_srcdir = /home/kali/NXU16GNUbinutils/buildavr/libctf/../../libctf
+abs_top_builddir = /home/kali/NXU16GNUbinutils/buildavr/libctf
+abs_top_srcdir = /home/kali/NXU16GNUbinutils/buildavr/libctf/../../libctf
 ac_ct_AR = 
 ac_ct_CC = 
 ac_ct_DUMPBIN = 
@@ -548,7 +548,7 @@ host_vendor = pc
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/kali/binutils-gdb/install-sh
+install_sh = ${SHELL} /home/kali/NXU16GNUbinutils/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -603,7 +603,7 @@ AM_CFLAGS = -std=gnu99 -Wall -W -Wall -Wno-narrowing -Wwrite-strings -Wmissing-f
 include_HEADERS = 
 #include_HEADERS = $(INCDIR)/ctf.h $(INCDIR)/ctf-api.h
 noinst_LTLIBRARIES = libctf.la libctf-nobfd.la
-libctf_nobfd_la_LIBADD = -L/home/kali/binutils-gdb/buildavr/libctf/../libiberty -liberty  $(ZLIB)
+libctf_nobfd_la_LIBADD = -L/home/kali/NXU16GNUbinutils/buildavr/libctf/../libiberty -liberty  $(ZLIB)
 libctf_ldflags_nover = -version-info 0:0:0 
 libctf_nobfd_la_LDFLAGS = $(libctf_ldflags_nover) -Wl,--version-script='libctf-nobfd.ver'
 libctf_nobfd_la_CPPFLAGS = $(AM_CPPFLAGS) -DNOBFD=1
@@ -612,11 +612,11 @@ libctf_nobfd_la_SOURCES = ctf-archive.c ctf-dump.c ctf-create.c \
 	ctf-link.c ctf-lookup.c ctf-open.c ctf-serialize.c ctf-sha1.c \
 	ctf-string.c ctf-subr.c ctf-types.c ctf-util.c $(am__append_1)
 
-# -L/home/kali/binutils-gdb/buildavr/libctf/../libiberty -liberty  appears here twice: once, to force libiberty to get searched before
+# -L/home/kali/NXU16GNUbinutils/buildavr/libctf/../libiberty -liberty  appears here twice: once, to force libiberty to get searched before
 # install-time libbfd adds a -L to the install dir (possibly pointing at an
 # incompatible libiberty), and once via lictf_nobfd_la_LIBADD so that the
 # references in there get picked up.
-libctf_la_LIBADD = -L/home/kali/binutils-gdb/buildavr/libctf/../libiberty -liberty  ../bfd/libbfd.la $(libctf_nobfd_la_LIBADD)
+libctf_la_LIBADD = -L/home/kali/NXU16GNUbinutils/buildavr/libctf/../libiberty -liberty  ../bfd/libbfd.la $(libctf_nobfd_la_LIBADD)
 libctf_la_CPPFLAGS = $(AM_CPPFLAGS) -DNOBFD=0
 libctf_la_LDFLAGS = $(libctf_ldflags_nover) -Wl,--version-script='../../libctf/libctf.ver'
 libctf_la_SOURCES = $(libctf_nobfd_la_SOURCES) ctf-open-bfd.c

@@ -49,7 +49,7 @@ RM = rm -f
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = /usr/bin/install -c -m 644
 
-BUILD_DIR = /home/kali/binutils-gdb/buildavr/readline/readline
+BUILD_DIR = /home/kali/NXU16GNUbinutils/buildavr/readline/readline
 TEXINPUTDIR = $(srcdir)
 
 MAKEINFO    = LANGUAGE= makeinfo

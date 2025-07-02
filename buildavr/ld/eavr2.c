@@ -331,6 +331,20 @@ gldavr2_get_script (int *isfile)
   if (bfd_link_relocatable (&link_info) && config.build_constructors)
     return
 "/* Script for -Ur */\n\
+                   .-::::::-.\n\
+                .-'          -.\n\
+          .-'                      -.\n\
+    .-'                                  -.\n\
+ |        .'          -.      |\n\
+ |       /                \\/                \\     |\n\
+ |      ;                  ;                  ;    |\n\
+ |      ;                  ;                  ;    |\n\
+  \\     ;                  ;                  ;   /\n\
+   -.              .-'              .-'  .'\n\
+     -.        .-'        .-'    .-'\n\
+        -.__.-'    __.-'    .-'\n\
+           -.    .-'        .-'\n\
+                 -._____.-'\n\
 /* Copyright (C) 2014-2025 Free Software Foundation, Inc.\n\
    Copying and distribution of this script, with or without modification,\n\
    are permitted in any medium without royalty provided the copyright\n\
@@ -340,8 +354,8 @@ OUTPUT_ARCH(avr:2)\n\
 SECTIONS\n\
 {\n\
   /* Read-only sections, merged into text segment: */\n\
-  .hash        0 : { *(.hash)		}\n\
-  .dynsym      0 : { *(.dynsym)		}\n\
+  .hash        0 : { *(.hash)		}\n"
+"  .dynsym      0 : { *(.dynsym)		}\n\
   .dynstr      0 : { *(.dynstr)		}\n\
   .gnu.version 0 : { *(.gnu.version)	}\n\
   .gnu.version_d 0 : { *(.gnu.version_d)	}\n\
@@ -354,8 +368,8 @@ SECTIONS\n\
     }\n\
   .rela.text   0 :\n\
     {\n\
-      *(.rela.text)\n"
-"    }\n\
+      *(.rela.text)\n\
+    }\n\
   .rel.fini    0 : { *(.rel.fini)		}\n\
   .rela.fini   0 : { *(.rela.fini)	}\n\
   .rel.rodata  0 :\n\
@@ -365,8 +379,8 @@ SECTIONS\n\
   .rela.rodata 0 :\n\
     {\n\
       *(.rela.rodata)\n\
-    }\n\
-  .rel.data    0 :\n\
+    }\n"
+"  .rel.data    0 :\n\
     {\n\
       *(.rel.data)\n\
     }\n\
@@ -379,8 +393,8 @@ SECTIONS\n\
   .rel.dtors   0 : { *(.rel.dtors)	}\n\
   .rela.dtors  0 : { *(.rela.dtors)	}\n\
   .rel.got     0 : { *(.rel.got)		}\n\
-  .rela.got    0 : { *(.rela.got)		}\n"
-"  .rel.bss     0 : { *(.rel.bss)		}\n\
+  .rela.got    0 : { *(.rela.got)		}\n\
+  .rel.bss     0 : { *(.rel.bss)		}\n\
   .rela.bss    0 : { *(.rela.bss)		}\n\
   .rel.plt     0 : { *(.rel.plt)		}\n\
   .rela.plt    0 : { *(.rela.plt)		}\n\
@@ -390,8 +404,8 @@ SECTIONS\n\
      __ctors_start = . ;\n\
      *(.ctors)\n\
      __ctors_end = . ;\n\
-     __dtors_start = . ;\n\
-     *(.dtors)\n\
+     __dtors_start = . ;\n"
+"     *(.dtors)\n\
      __dtors_end = . ;\n\
     *(.text)\n\
   }\n\
@@ -404,8 +418,8 @@ SECTIONS\n\
     *(.bss)\n\
   }\n\
   /* Global data not cleared after reset.  */\n\
-  .noinit  0:\n"
-"  {\n\
+  .noinit  0:\n\
+  {\n\
     *(.noinit)\n\
   }\n\
   .eeprom 0:\n\
@@ -415,8 +429,8 @@ SECTIONS\n\
   }\n\
   .fuse 0:\n\
   {\n\
-    KEEP(*(.fuse))\n\
-  }\n\
+    KEEP(*(.fuse))\n"
+"  }\n\
   .lock 0:\n\
   {\n\
     KEEP(*(.lock*))\n\
@@ -429,8 +443,8 @@ SECTIONS\n\
   .stab          0 : { *(.stab) }\n\
   .stabstr       0 : { *(.stabstr) }\n\
   .stab.excl     0 : { *(.stab.excl) }\n\
-  .stab.exclstr  0 : { *(.stab.exclstr) }\n"
-"  .stab.index    0 : { *(.stab.index) }\n\
+  .stab.exclstr  0 : { *(.stab.exclstr) }\n\
+  .stab.index    0 : { *(.stab.index) }\n\
   .stab.indexstr 0 : { *(.stab.indexstr) }\n\
   .comment 0 (INFO) : { *(.comment); LINKER_VERSION; }\n\
   .gnu.build.attributes : { *(.gnu.build.attributes) }\n\
@@ -475,6 +489,20 @@ SECTIONS\n\
 }\n\n"
   ; else if (bfd_link_relocatable (&link_info)) return
 "/* Script for -r */\n\
+                   .-::::::-.\n\
+                .-'          -.\n\
+          .-'                      -.\n\
+    .-'                                  -.\n\
+ |        .'          -.      |\n\
+ |       /                \\/                \\     |\n\
+ |      ;                  ;                  ;    |\n\
+ |      ;                  ;                  ;    |\n\
+  \\     ;                  ;                  ;   /\n\
+   -.              .-'              .-'  .'\n\
+     -.        .-'        .-'    .-'\n\
+        -.__.-'    __.-'    .-'\n\
+           -.    .-'        .-'\n\
+                 -._____.-'\n\
 /* Copyright (C) 2014-2025 Free Software Foundation, Inc.\n\
    Copying and distribution of this script, with or without modification,\n\
    are permitted in any medium without royalty provided the copyright\n\
@@ -484,8 +512,8 @@ OUTPUT_ARCH(avr:2)\n\
 SECTIONS\n\
 {\n\
   /* Read-only sections, merged into text segment: */\n\
-  .hash        0 : { *(.hash)		}\n\
-  .dynsym      0 : { *(.dynsym)		}\n\
+  .hash        0 : { *(.hash)		}\n"
+"  .dynsym      0 : { *(.dynsym)		}\n\
   .dynstr      0 : { *(.dynstr)		}\n\
   .gnu.version 0 : { *(.gnu.version)	}\n\
   .gnu.version_d 0 : { *(.gnu.version_d)	}\n\
@@ -498,8 +526,8 @@ SECTIONS\n\
     }\n\
   .rela.text   0 :\n\
     {\n\
-      *(.rela.text)\n"
-"    }\n\
+      *(.rela.text)\n\
+    }\n\
   .rel.fini    0 : { *(.rel.fini)		}\n\
   .rela.fini   0 : { *(.rela.fini)	}\n\
   .rel.rodata  0 :\n\
@@ -509,8 +537,8 @@ SECTIONS\n\
   .rela.rodata 0 :\n\
     {\n\
       *(.rela.rodata)\n\
-    }\n\
-  .rel.data    0 :\n\
+    }\n"
+"  .rel.data    0 :\n\
     {\n\
       *(.rel.data)\n\
     }\n\
@@ -523,8 +551,8 @@ SECTIONS\n\
   .rel.dtors   0 : { *(.rel.dtors)	}\n\
   .rela.dtors  0 : { *(.rela.dtors)	}\n\
   .rel.got     0 : { *(.rel.got)		}\n\
-  .rela.got    0 : { *(.rela.got)		}\n"
-"  .rel.bss     0 : { *(.rel.bss)		}\n\
+  .rela.got    0 : { *(.rela.got)		}\n\
+  .rel.bss     0 : { *(.rel.bss)		}\n\
   .rela.bss    0 : { *(.rela.bss)		}\n\
   .rel.plt     0 : { *(.rel.plt)		}\n\
   .rela.plt    0 : { *(.rela.plt)		}\n\
@@ -534,8 +562,8 @@ SECTIONS\n\
     *(.text)\n\
   }\n\
   .data        0 :\n\
-  {\n\
-    *(.data)\n\
+  {\n"
+"    *(.data)\n\
   }\n\
   .bss  0 :\n\
   {\n\
@@ -548,8 +576,8 @@ SECTIONS\n\
   }\n\
   .eeprom 0:\n\
   {\n\
-    /* See .data above...  */\n"
-"    KEEP(*(.eeprom*))\n\
+    /* See .data above...  */\n\
+    KEEP(*(.eeprom*))\n\
   }\n\
   .fuse 0:\n\
   {\n\
@@ -559,8 +587,8 @@ SECTIONS\n\
   {\n\
     KEEP(*(.lock*))\n\
   }\n\
-  .signature 0:\n\
-  {\n\
+  .signature 0:\n"
+"  {\n\
     KEEP(*(.signature*))\n\
   }\n\
   /* Stabs debugging sections.  */\n\
@@ -573,8 +601,8 @@ SECTIONS\n\
   .comment 0 (INFO) : { *(.comment); LINKER_VERSION; }\n\
   .gnu.build.attributes : { *(.gnu.build.attributes) }\n\
   .note.gnu.build-id 0 : { *(.note.gnu.build-id) }\n\
-  /* DWARF debug sections.\n"
-"     Symbols in the DWARF debugging sections are relative to the beginning\n\
+  /* DWARF debug sections.\n\
+     Symbols in the DWARF debugging sections are relative to the beginning\n\
      of the section so we begin them at 0.  */\n\
   /* DWARF 1.  */\n\
   .debug          0 : { *(.debug) }\n\
@@ -613,6 +641,20 @@ SECTIONS\n\
 }\n\n"
   ; else if (!config.text_read_only) return
 "/* Script for -N */\n\
+                   .-::::::-.\n\
+                .-'          -.\n\
+          .-'                      -.\n\
+    .-'                                  -.\n\
+ |        .'          -.      |\n\
+ |       /                \\/                \\     |\n\
+ |      ;                  ;                  ;    |\n\
+ |      ;                  ;                  ;    |\n\
+  \\     ;                  ;                  ;   /\n\
+   -.              .-'              .-'  .'\n\
+     -.        .-'        .-'    .-'\n\
+        -.__.-'    __.-'    .-'\n\
+           -.    .-'        .-'\n\
+                 -._____.-'\n\
 /* Copyright (C) 2014-2025 Free Software Foundation, Inc.\n\
    Copying and distribution of this script, with or without modification,\n\
    are permitted in any medium without royalty provided the copyright\n\
@@ -622,8 +664,8 @@ OUTPUT_ARCH(avr:2)\n\
 __TEXT_REGION_ORIGIN__ = DEFINED(__TEXT_REGION_ORIGIN__) ? __TEXT_REGION_ORIGIN__ : 0;\n\
 __TEXT_REGION_LENGTH__ = DEFINED(__TEXT_REGION_LENGTH__) ? __TEXT_REGION_LENGTH__ : 8K;\n\
 __DATA_REGION_ORIGIN__ = DEFINED(__DATA_REGION_ORIGIN__) ? __DATA_REGION_ORIGIN__ : 0x800060;\n\
-__DATA_REGION_LENGTH__ = DEFINED(__DATA_REGION_LENGTH__) ? __DATA_REGION_LENGTH__ : 0xffa0;\n\
-__EEPROM_REGION_LENGTH__ = DEFINED(__EEPROM_REGION_LENGTH__) ? __EEPROM_REGION_LENGTH__ : 64K;\n\
+__DATA_REGION_LENGTH__ = DEFINED(__DATA_REGION_LENGTH__) ? __DATA_REGION_LENGTH__ : 0xffa0;\n"
+"__EEPROM_REGION_LENGTH__ = DEFINED(__EEPROM_REGION_LENGTH__) ? __EEPROM_REGION_LENGTH__ : 64K;\n\
 __FUSE_REGION_LENGTH__ = DEFINED(__FUSE_REGION_LENGTH__) ? __FUSE_REGION_LENGTH__ : 1K;\n\
 __LOCK_REGION_LENGTH__ = DEFINED(__LOCK_REGION_LENGTH__) ? __LOCK_REGION_LENGTH__ : 1K;\n\
 __SIGNATURE_REGION_LENGTH__ = DEFINED(__SIGNATURE_REGION_LENGTH__) ? __SIGNATURE_REGION_LENGTH__ : 1K;\n\
@@ -636,8 +678,8 @@ MEMORY\n\
   fuse      (rw!x) : ORIGIN = 0x820000, LENGTH = __FUSE_REGION_LENGTH__\n\
   lock      (rw!x) : ORIGIN = 0x830000, LENGTH = __LOCK_REGION_LENGTH__\n\
   signature (rw!x) : ORIGIN = 0x840000, LENGTH = __SIGNATURE_REGION_LENGTH__\n\
-  user_signatures (rw!x) : ORIGIN = 0x850000, LENGTH = __USER_SIGNATURE_REGION_LENGTH__\n"
-"}\n\
+  user_signatures (rw!x) : ORIGIN = 0x850000, LENGTH = __USER_SIGNATURE_REGION_LENGTH__\n\
+}\n\
 SECTIONS\n\
 {\n\
   /* Read-only sections, merged into text segment: */\n\
@@ -647,8 +689,8 @@ SECTIONS\n\
   .gnu.version   : { *(.gnu.version)	}\n\
   .gnu.version_d   : { *(.gnu.version_d)	}\n\
   .gnu.version_r   : { *(.gnu.version_r)	}\n\
-  .rel.init      : { *(.rel.init)		}\n\
-  .rela.init     : { *(.rela.init)	}\n\
+  .rel.init      : { *(.rel.init)		}\n"
+"  .rela.init     : { *(.rela.init)	}\n\
   .rel.text      :\n\
     {\n\
       *(.rel.text)\n\
@@ -661,8 +703,8 @@ SECTIONS\n\
       *(.rela.text.*)\n\
       *(.rela.gnu.linkonce.t*)\n\
     }\n\
-  .rel.fini      : { *(.rel.fini)		}\n"
-"  .rela.fini     : { *(.rela.fini)	}\n\
+  .rel.fini      : { *(.rel.fini)		}\n\
+  .rela.fini     : { *(.rela.fini)	}\n\
   .rel.rodata    :\n\
     {\n\
       *(.rel.rodata)\n\
@@ -672,8 +714,8 @@ SECTIONS\n\
   .rela.rodata   :\n\
     {\n\
       *(.rela.rodata)\n\
-      *(.rela.rodata.*)\n\
-      *(.rela.gnu.linkonce.r*)\n\
+      *(.rela.rodata.*)\n"
+"      *(.rela.gnu.linkonce.r*)\n\
     }\n\
   .rel.data      :\n\
     {\n\
@@ -686,8 +728,8 @@ SECTIONS\n\
       *(.rela.data)\n\
       *(.rela.data.*)\n\
       *(.rela.gnu.linkonce.d*)\n\
-    }\n"
-"  .rel.ctors     : { *(.rel.ctors)	}\n\
+    }\n\
+  .rel.ctors     : { *(.rel.ctors)	}\n\
   .rela.ctors    : { *(.rela.ctors)	}\n\
   .rel.dtors     : { *(.rel.dtors)	}\n\
   .rela.dtors    : { *(.rela.dtors)	}\n\
@@ -697,8 +739,8 @@ SECTIONS\n\
   .rela.bss      : { *(.rela.bss)		}\n\
   .rel.plt       : { *(.rel.plt)		}\n\
   .rela.plt      : { *(.rela.plt)		}\n\
-  /* Internal text space or external memory.  */\n\
-  .text   :\n\
+  /* Internal text space or external memory.  */\n"
+"  .text   :\n\
   {\n\
     *(.vectors)\n\
     KEEP(*(.vectors))\n\
@@ -711,8 +753,8 @@ SECTIONS\n\
     /* The jump trampolines for the 16-bit limited relocs will reside here.  */\n\
     *(.trampolines)\n\
     *(.trampolines*)\n\
-    __trampolines_end = . ;\n"
-"    /* avr-libc expects these data to reside in lower 64K. */\n\
+    __trampolines_end = . ;\n\
+    /* avr-libc expects these data to reside in lower 64K. */\n\
     *libprintf_flt.a:*(.progmem.data)\n\
     *libc.a:*(.progmem.data)\n\
     *(.progmem.*)\n\
@@ -890,6 +932,20 @@ __flmap = DEFINED(__flmap) ? __flmap : 0 ;\n\
 }\n\n"
   ; else if (!config.magic_demand_paged) return
 "/* Script for -n */\n\
+                   .-::::::-.\n\
+                .-'          -.\n\
+          .-'                      -.\n\
+    .-'                                  -.\n\
+ |        .'          -.      |\n\
+ |       /                \\/                \\     |\n\
+ |      ;                  ;                  ;    |\n\
+ |      ;                  ;                  ;    |\n\
+  \\     ;                  ;                  ;   /\n\
+   -.              .-'              .-'  .'\n\
+     -.        .-'        .-'    .-'\n\
+        -.__.-'    __.-'    .-'\n\
+           -.    .-'        .-'\n\
+                 -._____.-'\n\
 /* Copyright (C) 2014-2025 Free Software Foundation, Inc.\n\
    Copying and distribution of this script, with or without modification,\n\
    are permitted in any medium without royalty provided the copyright\n\
@@ -899,8 +955,8 @@ OUTPUT_ARCH(avr:2)\n\
 __TEXT_REGION_ORIGIN__ = DEFINED(__TEXT_REGION_ORIGIN__) ? __TEXT_REGION_ORIGIN__ : 0;\n\
 __TEXT_REGION_LENGTH__ = DEFINED(__TEXT_REGION_LENGTH__) ? __TEXT_REGION_LENGTH__ : 8K;\n\
 __DATA_REGION_ORIGIN__ = DEFINED(__DATA_REGION_ORIGIN__) ? __DATA_REGION_ORIGIN__ : 0x800060;\n\
-__DATA_REGION_LENGTH__ = DEFINED(__DATA_REGION_LENGTH__) ? __DATA_REGION_LENGTH__ : 0xffa0;\n\
-__EEPROM_REGION_LENGTH__ = DEFINED(__EEPROM_REGION_LENGTH__) ? __EEPROM_REGION_LENGTH__ : 64K;\n\
+__DATA_REGION_LENGTH__ = DEFINED(__DATA_REGION_LENGTH__) ? __DATA_REGION_LENGTH__ : 0xffa0;\n"
+"__EEPROM_REGION_LENGTH__ = DEFINED(__EEPROM_REGION_LENGTH__) ? __EEPROM_REGION_LENGTH__ : 64K;\n\
 __FUSE_REGION_LENGTH__ = DEFINED(__FUSE_REGION_LENGTH__) ? __FUSE_REGION_LENGTH__ : 1K;\n\
 __LOCK_REGION_LENGTH__ = DEFINED(__LOCK_REGION_LENGTH__) ? __LOCK_REGION_LENGTH__ : 1K;\n\
 __SIGNATURE_REGION_LENGTH__ = DEFINED(__SIGNATURE_REGION_LENGTH__) ? __SIGNATURE_REGION_LENGTH__ : 1K;\n\
@@ -913,8 +969,8 @@ MEMORY\n\
   fuse      (rw!x) : ORIGIN = 0x820000, LENGTH = __FUSE_REGION_LENGTH__\n\
   lock      (rw!x) : ORIGIN = 0x830000, LENGTH = __LOCK_REGION_LENGTH__\n\
   signature (rw!x) : ORIGIN = 0x840000, LENGTH = __SIGNATURE_REGION_LENGTH__\n\
-  user_signatures (rw!x) : ORIGIN = 0x850000, LENGTH = __USER_SIGNATURE_REGION_LENGTH__\n"
-"}\n\
+  user_signatures (rw!x) : ORIGIN = 0x850000, LENGTH = __USER_SIGNATURE_REGION_LENGTH__\n\
+}\n\
 SECTIONS\n\
 {\n\
   /* Read-only sections, merged into text segment: */\n\
@@ -924,8 +980,8 @@ SECTIONS\n\
   .gnu.version   : { *(.gnu.version)	}\n\
   .gnu.version_d   : { *(.gnu.version_d)	}\n\
   .gnu.version_r   : { *(.gnu.version_r)	}\n\
-  .rel.init      : { *(.rel.init)		}\n\
-  .rela.init     : { *(.rela.init)	}\n\
+  .rel.init      : { *(.rel.init)		}\n"
+"  .rela.init     : { *(.rela.init)	}\n\
   .rel.text      :\n\
     {\n\
       *(.rel.text)\n\
@@ -938,8 +994,8 @@ SECTIONS\n\
       *(.rela.text.*)\n\
       *(.rela.gnu.linkonce.t*)\n\
     }\n\
-  .rel.fini      : { *(.rel.fini)		}\n"
-"  .rela.fini     : { *(.rela.fini)	}\n\
+  .rel.fini      : { *(.rel.fini)		}\n\
+  .rela.fini     : { *(.rela.fini)	}\n\
   .rel.rodata    :\n\
     {\n\
       *(.rel.rodata)\n\
@@ -949,8 +1005,8 @@ SECTIONS\n\
   .rela.rodata   :\n\
     {\n\
       *(.rela.rodata)\n\
-      *(.rela.rodata.*)\n\
-      *(.rela.gnu.linkonce.r*)\n\
+      *(.rela.rodata.*)\n"
+"      *(.rela.gnu.linkonce.r*)\n\
     }\n\
   .rel.data      :\n\
     {\n\
@@ -963,8 +1019,8 @@ SECTIONS\n\
       *(.rela.data)\n\
       *(.rela.data.*)\n\
       *(.rela.gnu.linkonce.d*)\n\
-    }\n"
-"  .rel.ctors     : { *(.rel.ctors)	}\n\
+    }\n\
+  .rel.ctors     : { *(.rel.ctors)	}\n\
   .rela.ctors    : { *(.rela.ctors)	}\n\
   .rel.dtors     : { *(.rel.dtors)	}\n\
   .rela.dtors    : { *(.rela.dtors)	}\n\
@@ -974,8 +1030,8 @@ SECTIONS\n\
   .rela.bss      : { *(.rela.bss)		}\n\
   .rel.plt       : { *(.rel.plt)		}\n\
   .rela.plt      : { *(.rela.plt)		}\n\
-  /* Internal text space or external memory.  */\n\
-  .text   :\n\
+  /* Internal text space or external memory.  */\n"
+"  .text   :\n\
   {\n\
     *(.vectors)\n\
     KEEP(*(.vectors))\n\
@@ -988,8 +1044,8 @@ SECTIONS\n\
     /* The jump trampolines for the 16-bit limited relocs will reside here.  */\n\
     *(.trampolines)\n\
     *(.trampolines*)\n\
-    __trampolines_end = . ;\n"
-"    /* avr-libc expects these data to reside in lower 64K. */\n\
+    __trampolines_end = . ;\n\
+    /* avr-libc expects these data to reside in lower 64K. */\n\
     *libprintf_flt.a:*(.progmem.data)\n\
     *libc.a:*(.progmem.data)\n\
     *(.progmem.*)\n\
@@ -1168,6 +1224,20 @@ __flmap = DEFINED(__flmap) ? __flmap : 0 ;\n\
   ; else if (link_info.separate_code
              && link_info.one_rosegment) return
 "/* Script for -z separate-code --rosegment */\n\
+                   .-::::::-.\n\
+                .-'          -.\n\
+          .-'                      -.\n\
+    .-'                                  -.\n\
+ |        .'          -.      |\n\
+ |       /                \\/                \\     |\n\
+ |      ;                  ;                  ;    |\n\
+ |      ;                  ;                  ;    |\n\
+  \\     ;                  ;                  ;   /\n\
+   -.              .-'              .-'  .'\n\
+     -.        .-'        .-'    .-'\n\
+        -.__.-'    __.-'    .-'\n\
+           -.    .-'        .-'\n\
+                 -._____.-'\n\
 /* Copyright (C) 2014-2025 Free Software Foundation, Inc.\n\
    Copying and distribution of this script, with or without modification,\n\
    are permitted in any medium without royalty provided the copyright\n\
@@ -1177,8 +1247,8 @@ OUTPUT_ARCH(avr:2)\n\
 __TEXT_REGION_ORIGIN__ = DEFINED(__TEXT_REGION_ORIGIN__) ? __TEXT_REGION_ORIGIN__ : 0;\n\
 __TEXT_REGION_LENGTH__ = DEFINED(__TEXT_REGION_LENGTH__) ? __TEXT_REGION_LENGTH__ : 8K;\n\
 __DATA_REGION_ORIGIN__ = DEFINED(__DATA_REGION_ORIGIN__) ? __DATA_REGION_ORIGIN__ : 0x800060;\n\
-__DATA_REGION_LENGTH__ = DEFINED(__DATA_REGION_LENGTH__) ? __DATA_REGION_LENGTH__ : 0xffa0;\n\
-__EEPROM_REGION_LENGTH__ = DEFINED(__EEPROM_REGION_LENGTH__) ? __EEPROM_REGION_LENGTH__ : 64K;\n\
+__DATA_REGION_LENGTH__ = DEFINED(__DATA_REGION_LENGTH__) ? __DATA_REGION_LENGTH__ : 0xffa0;\n"
+"__EEPROM_REGION_LENGTH__ = DEFINED(__EEPROM_REGION_LENGTH__) ? __EEPROM_REGION_LENGTH__ : 64K;\n\
 __FUSE_REGION_LENGTH__ = DEFINED(__FUSE_REGION_LENGTH__) ? __FUSE_REGION_LENGTH__ : 1K;\n\
 __LOCK_REGION_LENGTH__ = DEFINED(__LOCK_REGION_LENGTH__) ? __LOCK_REGION_LENGTH__ : 1K;\n\
 __SIGNATURE_REGION_LENGTH__ = DEFINED(__SIGNATURE_REGION_LENGTH__) ? __SIGNATURE_REGION_LENGTH__ : 1K;\n\
@@ -1191,8 +1261,8 @@ MEMORY\n\
   fuse      (rw!x) : ORIGIN = 0x820000, LENGTH = __FUSE_REGION_LENGTH__\n\
   lock      (rw!x) : ORIGIN = 0x830000, LENGTH = __LOCK_REGION_LENGTH__\n\
   signature (rw!x) : ORIGIN = 0x840000, LENGTH = __SIGNATURE_REGION_LENGTH__\n\
-  user_signatures (rw!x) : ORIGIN = 0x850000, LENGTH = __USER_SIGNATURE_REGION_LENGTH__\n"
-"}\n\
+  user_signatures (rw!x) : ORIGIN = 0x850000, LENGTH = __USER_SIGNATURE_REGION_LENGTH__\n\
+}\n\
 SECTIONS\n\
 {\n\
   /* Read-only sections, merged into text segment: */\n\
@@ -1202,8 +1272,8 @@ SECTIONS\n\
   .gnu.version   : { *(.gnu.version)	}\n\
   .gnu.version_d   : { *(.gnu.version_d)	}\n\
   .gnu.version_r   : { *(.gnu.version_r)	}\n\
-  .rel.init      : { *(.rel.init)		}\n\
-  .rela.init     : { *(.rela.init)	}\n\
+  .rel.init      : { *(.rel.init)		}\n"
+"  .rela.init     : { *(.rela.init)	}\n\
   .rel.text      :\n\
     {\n\
       *(.rel.text)\n\
@@ -1216,8 +1286,8 @@ SECTIONS\n\
       *(.rela.text.*)\n\
       *(.rela.gnu.linkonce.t*)\n\
     }\n\
-  .rel.fini      : { *(.rel.fini)		}\n"
-"  .rela.fini     : { *(.rela.fini)	}\n\
+  .rel.fini      : { *(.rel.fini)		}\n\
+  .rela.fini     : { *(.rela.fini)	}\n\
   .rel.rodata    :\n\
     {\n\
       *(.rel.rodata)\n\
@@ -1227,8 +1297,8 @@ SECTIONS\n\
   .rela.rodata   :\n\
     {\n\
       *(.rela.rodata)\n\
-      *(.rela.rodata.*)\n\
-      *(.rela.gnu.linkonce.r*)\n\
+      *(.rela.rodata.*)\n"
+"      *(.rela.gnu.linkonce.r*)\n\
     }\n\
   .rel.data      :\n\
     {\n\
@@ -1241,8 +1311,8 @@ SECTIONS\n\
       *(.rela.data)\n\
       *(.rela.data.*)\n\
       *(.rela.gnu.linkonce.d*)\n\
-    }\n"
-"  .rel.ctors     : { *(.rel.ctors)	}\n\
+    }\n\
+  .rel.ctors     : { *(.rel.ctors)	}\n\
   .rela.ctors    : { *(.rela.ctors)	}\n\
   .rel.dtors     : { *(.rel.dtors)	}\n\
   .rela.dtors    : { *(.rela.dtors)	}\n\
@@ -1252,8 +1322,8 @@ SECTIONS\n\
   .rela.bss      : { *(.rela.bss)		}\n\
   .rel.plt       : { *(.rel.plt)		}\n\
   .rela.plt      : { *(.rela.plt)		}\n\
-  /* Internal text space or external memory.  */\n\
-  .text   :\n\
+  /* Internal text space or external memory.  */\n"
+"  .text   :\n\
   {\n\
     *(.vectors)\n\
     KEEP(*(.vectors))\n\
@@ -1266,8 +1336,8 @@ SECTIONS\n\
     /* The jump trampolines for the 16-bit limited relocs will reside here.  */\n\
     *(.trampolines)\n\
     *(.trampolines*)\n\
-    __trampolines_end = . ;\n"
-"    /* avr-libc expects these data to reside in lower 64K. */\n\
+    __trampolines_end = . ;\n\
+    /* avr-libc expects these data to reside in lower 64K. */\n\
     *libprintf_flt.a:*(.progmem.data)\n\
     *libc.a:*(.progmem.data)\n\
     *(.progmem.*)\n\
@@ -1445,6 +1515,20 @@ __flmap = DEFINED(__flmap) ? __flmap : 0 ;\n\
 }\n\n"
   ; else if (link_info.separate_code) return
 "/* Script for -z separate-code */\n\
+                   .-::::::-.\n\
+                .-'          -.\n\
+          .-'                      -.\n\
+    .-'                                  -.\n\
+ |        .'          -.      |\n\
+ |       /                \\/                \\     |\n\
+ |      ;                  ;                  ;    |\n\
+ |      ;                  ;                  ;    |\n\
+  \\     ;                  ;                  ;   /\n\
+   -.              .-'              .-'  .'\n\
+     -.        .-'        .-'    .-'\n\
+        -.__.-'    __.-'    .-'\n\
+           -.    .-'        .-'\n\
+                 -._____.-'\n\
 /* Copyright (C) 2014-2025 Free Software Foundation, Inc.\n\
    Copying and distribution of this script, with or without modification,\n\
    are permitted in any medium without royalty provided the copyright\n\
@@ -1454,8 +1538,8 @@ OUTPUT_ARCH(avr:2)\n\
 __TEXT_REGION_ORIGIN__ = DEFINED(__TEXT_REGION_ORIGIN__) ? __TEXT_REGION_ORIGIN__ : 0;\n\
 __TEXT_REGION_LENGTH__ = DEFINED(__TEXT_REGION_LENGTH__) ? __TEXT_REGION_LENGTH__ : 8K;\n\
 __DATA_REGION_ORIGIN__ = DEFINED(__DATA_REGION_ORIGIN__) ? __DATA_REGION_ORIGIN__ : 0x800060;\n\
-__DATA_REGION_LENGTH__ = DEFINED(__DATA_REGION_LENGTH__) ? __DATA_REGION_LENGTH__ : 0xffa0;\n\
-__EEPROM_REGION_LENGTH__ = DEFINED(__EEPROM_REGION_LENGTH__) ? __EEPROM_REGION_LENGTH__ : 64K;\n\
+__DATA_REGION_LENGTH__ = DEFINED(__DATA_REGION_LENGTH__) ? __DATA_REGION_LENGTH__ : 0xffa0;\n"
+"__EEPROM_REGION_LENGTH__ = DEFINED(__EEPROM_REGION_LENGTH__) ? __EEPROM_REGION_LENGTH__ : 64K;\n\
 __FUSE_REGION_LENGTH__ = DEFINED(__FUSE_REGION_LENGTH__) ? __FUSE_REGION_LENGTH__ : 1K;\n\
 __LOCK_REGION_LENGTH__ = DEFINED(__LOCK_REGION_LENGTH__) ? __LOCK_REGION_LENGTH__ : 1K;\n\
 __SIGNATURE_REGION_LENGTH__ = DEFINED(__SIGNATURE_REGION_LENGTH__) ? __SIGNATURE_REGION_LENGTH__ : 1K;\n\
@@ -1468,8 +1552,8 @@ MEMORY\n\
   fuse      (rw!x) : ORIGIN = 0x820000, LENGTH = __FUSE_REGION_LENGTH__\n\
   lock      (rw!x) : ORIGIN = 0x830000, LENGTH = __LOCK_REGION_LENGTH__\n\
   signature (rw!x) : ORIGIN = 0x840000, LENGTH = __SIGNATURE_REGION_LENGTH__\n\
-  user_signatures (rw!x) : ORIGIN = 0x850000, LENGTH = __USER_SIGNATURE_REGION_LENGTH__\n"
-"}\n\
+  user_signatures (rw!x) : ORIGIN = 0x850000, LENGTH = __USER_SIGNATURE_REGION_LENGTH__\n\
+}\n\
 SECTIONS\n\
 {\n\
   /* Read-only sections, merged into text segment: */\n\
@@ -1479,8 +1563,8 @@ SECTIONS\n\
   .gnu.version   : { *(.gnu.version)	}\n\
   .gnu.version_d   : { *(.gnu.version_d)	}\n\
   .gnu.version_r   : { *(.gnu.version_r)	}\n\
-  .rel.init      : { *(.rel.init)		}\n\
-  .rela.init     : { *(.rela.init)	}\n\
+  .rel.init      : { *(.rel.init)		}\n"
+"  .rela.init     : { *(.rela.init)	}\n\
   .rel.text      :\n\
     {\n\
       *(.rel.text)\n\
@@ -1493,8 +1577,8 @@ SECTIONS\n\
       *(.rela.text.*)\n\
       *(.rela.gnu.linkonce.t*)\n\
     }\n\
-  .rel.fini      : { *(.rel.fini)		}\n"
-"  .rela.fini     : { *(.rela.fini)	}\n\
+  .rel.fini      : { *(.rel.fini)		}\n\
+  .rela.fini     : { *(.rela.fini)	}\n\
   .rel.rodata    :\n\
     {\n\
       *(.rel.rodata)\n\
@@ -1504,8 +1588,8 @@ SECTIONS\n\
   .rela.rodata   :\n\
     {\n\
       *(.rela.rodata)\n\
-      *(.rela.rodata.*)\n\
-      *(.rela.gnu.linkonce.r*)\n\
+      *(.rela.rodata.*)\n"
+"      *(.rela.gnu.linkonce.r*)\n\
     }\n\
   .rel.data      :\n\
     {\n\
@@ -1518,8 +1602,8 @@ SECTIONS\n\
       *(.rela.data)\n\
       *(.rela.data.*)\n\
       *(.rela.gnu.linkonce.d*)\n\
-    }\n"
-"  .rel.ctors     : { *(.rel.ctors)	}\n\
+    }\n\
+  .rel.ctors     : { *(.rel.ctors)	}\n\
   .rela.ctors    : { *(.rela.ctors)	}\n\
   .rel.dtors     : { *(.rel.dtors)	}\n\
   .rela.dtors    : { *(.rela.dtors)	}\n\
@@ -1529,8 +1613,8 @@ SECTIONS\n\
   .rela.bss      : { *(.rela.bss)		}\n\
   .rel.plt       : { *(.rel.plt)		}\n\
   .rela.plt      : { *(.rela.plt)		}\n\
-  /* Internal text space or external memory.  */\n\
-  .text   :\n\
+  /* Internal text space or external memory.  */\n"
+"  .text   :\n\
   {\n\
     *(.vectors)\n\
     KEEP(*(.vectors))\n\
@@ -1543,8 +1627,8 @@ SECTIONS\n\
     /* The jump trampolines for the 16-bit limited relocs will reside here.  */\n\
     *(.trampolines)\n\
     *(.trampolines*)\n\
-    __trampolines_end = . ;\n"
-"    /* avr-libc expects these data to reside in lower 64K. */\n\
+    __trampolines_end = . ;\n\
+    /* avr-libc expects these data to reside in lower 64K. */\n\
     *libprintf_flt.a:*(.progmem.data)\n\
     *libc.a:*(.progmem.data)\n\
     *(.progmem.*)\n\
@@ -1722,6 +1806,20 @@ __flmap = DEFINED(__flmap) ? __flmap : 0 ;\n\
 }\n\n"
   ; else return
 "/* Default linker script, for normal executables */\n\
+                   .-::::::-.\n\
+                .-'          -.\n\
+          .-'                      -.\n\
+    .-'                                  -.\n\
+ |        .'          -.      |\n\
+ |       /                \\/                \\     |\n\
+ |      ;                  ;                  ;    |\n\
+ |      ;                  ;                  ;    |\n\
+  \\     ;                  ;                  ;   /\n\
+   -.              .-'              .-'  .'\n\
+     -.        .-'        .-'    .-'\n\
+        -.__.-'    __.-'    .-'\n\
+           -.    .-'        .-'\n\
+                 -._____.-'\n\
 /* Copyright (C) 2014-2025 Free Software Foundation, Inc.\n\
    Copying and distribution of this script, with or without modification,\n\
    are permitted in any medium without royalty provided the copyright\n\
@@ -1731,8 +1829,8 @@ OUTPUT_ARCH(avr:2)\n\
 __TEXT_REGION_ORIGIN__ = DEFINED(__TEXT_REGION_ORIGIN__) ? __TEXT_REGION_ORIGIN__ : 0;\n\
 __TEXT_REGION_LENGTH__ = DEFINED(__TEXT_REGION_LENGTH__) ? __TEXT_REGION_LENGTH__ : 8K;\n\
 __DATA_REGION_ORIGIN__ = DEFINED(__DATA_REGION_ORIGIN__) ? __DATA_REGION_ORIGIN__ : 0x800060;\n\
-__DATA_REGION_LENGTH__ = DEFINED(__DATA_REGION_LENGTH__) ? __DATA_REGION_LENGTH__ : 0xffa0;\n\
-__EEPROM_REGION_LENGTH__ = DEFINED(__EEPROM_REGION_LENGTH__) ? __EEPROM_REGION_LENGTH__ : 64K;\n\
+__DATA_REGION_LENGTH__ = DEFINED(__DATA_REGION_LENGTH__) ? __DATA_REGION_LENGTH__ : 0xffa0;\n"
+"__EEPROM_REGION_LENGTH__ = DEFINED(__EEPROM_REGION_LENGTH__) ? __EEPROM_REGION_LENGTH__ : 64K;\n\
 __FUSE_REGION_LENGTH__ = DEFINED(__FUSE_REGION_LENGTH__) ? __FUSE_REGION_LENGTH__ : 1K;\n\
 __LOCK_REGION_LENGTH__ = DEFINED(__LOCK_REGION_LENGTH__) ? __LOCK_REGION_LENGTH__ : 1K;\n\
 __SIGNATURE_REGION_LENGTH__ = DEFINED(__SIGNATURE_REGION_LENGTH__) ? __SIGNATURE_REGION_LENGTH__ : 1K;\n\
@@ -1745,8 +1843,8 @@ MEMORY\n\
   fuse      (rw!x) : ORIGIN = 0x820000, LENGTH = __FUSE_REGION_LENGTH__\n\
   lock      (rw!x) : ORIGIN = 0x830000, LENGTH = __LOCK_REGION_LENGTH__\n\
   signature (rw!x) : ORIGIN = 0x840000, LENGTH = __SIGNATURE_REGION_LENGTH__\n\
-  user_signatures (rw!x) : ORIGIN = 0x850000, LENGTH = __USER_SIGNATURE_REGION_LENGTH__\n"
-"}\n\
+  user_signatures (rw!x) : ORIGIN = 0x850000, LENGTH = __USER_SIGNATURE_REGION_LENGTH__\n\
+}\n\
 SECTIONS\n\
 {\n\
   /* Read-only sections, merged into text segment: */\n\
@@ -1756,8 +1854,8 @@ SECTIONS\n\
   .gnu.version   : { *(.gnu.version)	}\n\
   .gnu.version_d   : { *(.gnu.version_d)	}\n\
   .gnu.version_r   : { *(.gnu.version_r)	}\n\
-  .rel.init      : { *(.rel.init)		}\n\
-  .rela.init     : { *(.rela.init)	}\n\
+  .rel.init      : { *(.rel.init)		}\n"
+"  .rela.init     : { *(.rela.init)	}\n\
   .rel.text      :\n\
     {\n\
       *(.rel.text)\n\
@@ -1770,8 +1868,8 @@ SECTIONS\n\
       *(.rela.text.*)\n\
       *(.rela.gnu.linkonce.t*)\n\
     }\n\
-  .rel.fini      : { *(.rel.fini)		}\n"
-"  .rela.fini     : { *(.rela.fini)	}\n\
+  .rel.fini      : { *(.rel.fini)		}\n\
+  .rela.fini     : { *(.rela.fini)	}\n\
   .rel.rodata    :\n\
     {\n\
       *(.rel.rodata)\n\
@@ -1781,8 +1879,8 @@ SECTIONS\n\
   .rela.rodata   :\n\
     {\n\
       *(.rela.rodata)\n\
-      *(.rela.rodata.*)\n\
-      *(.rela.gnu.linkonce.r*)\n\
+      *(.rela.rodata.*)\n"
+"      *(.rela.gnu.linkonce.r*)\n\
     }\n\
   .rel.data      :\n\
     {\n\
@@ -1795,8 +1893,8 @@ SECTIONS\n\
       *(.rela.data)\n\
       *(.rela.data.*)\n\
       *(.rela.gnu.linkonce.d*)\n\
-    }\n"
-"  .rel.ctors     : { *(.rel.ctors)	}\n\
+    }\n\
+  .rel.ctors     : { *(.rel.ctors)	}\n\
   .rela.ctors    : { *(.rela.ctors)	}\n\
   .rel.dtors     : { *(.rel.dtors)	}\n\
   .rela.dtors    : { *(.rela.dtors)	}\n\
@@ -1806,8 +1904,8 @@ SECTIONS\n\
   .rela.bss      : { *(.rela.bss)		}\n\
   .rel.plt       : { *(.rel.plt)		}\n\
   .rela.plt      : { *(.rela.plt)		}\n\
-  /* Internal text space or external memory.  */\n\
-  .text   :\n\
+  /* Internal text space or external memory.  */\n"
+"  .text   :\n\
   {\n\
     *(.vectors)\n\
     KEEP(*(.vectors))\n\
@@ -1820,8 +1918,8 @@ SECTIONS\n\
     /* The jump trampolines for the 16-bit limited relocs will reside here.  */\n\
     *(.trampolines)\n\
     *(.trampolines*)\n\
-    __trampolines_end = . ;\n"
-"    /* avr-libc expects these data to reside in lower 64K. */\n\
+    __trampolines_end = . ;\n\
+    /* avr-libc expects these data to reside in lower 64K. */\n\
     *libprintf_flt.a:*(.progmem.data)\n\
     *libc.a:*(.progmem.data)\n\
     *(.progmem.*)\n\

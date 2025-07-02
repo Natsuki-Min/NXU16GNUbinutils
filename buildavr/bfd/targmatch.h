@@ -360,7 +360,13 @@
 #endif
 
     
+#if !defined (SELECT_VECS) || defined (HAVE_nxu16_elf32_vec)
 
+{ "nxu16-*-*",
+&nxu16_elf32_vec },
+#endif
+
+    
 #if !defined (SELECT_VECS) || defined (HAVE_bfin_elf32_vec)
 
 { "bfin-*-*",

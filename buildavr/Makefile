@@ -90,7 +90,7 @@ MAINTAINER_MODE_TRUE = #
 # -------------------------------------------------
 
 # The gcc driver likes to know the arguments it was configured with.
-TOPLEVEL_CONFIGURE_ARGUMENTS=../configure --target=avr --prefix=/home/kali/gcc6502cp/avrld --disable-gdb --disable-nls --enable-ld --enable-as --without-sim --disable-FEATURE --disable-gprofng --disable-libquadmath --disable-libquadmath-support --disable-libada --disable-libgm2 --disable-libssp --disable-libstdcxx --disable-option-checking
+TOPLEVEL_CONFIGURE_ARGUMENTS=../configure --target=avr --prefix=/home/kali/gcc6502cp/avrld --disable-gdb --disable-nls --enable-ld --enable-as
 
 tooldir = ${exec_prefix}/avr
 build_tooldir = ${exec_prefix}/avr
@@ -111,7 +111,7 @@ host_shared = no
 BUILD_SUBDIR = build-x86_64-pc-linux-gnu
 # This is set by the configure script to the arguments to use when configuring
 # directories built for the build system.
-BUILD_CONFIGARGS =  --cache-file=./config.cache '--prefix=/home/kali/gcc6502cp/avrld' '--disable-gdb' '--disable-nls' '--enable-ld' '--enable-as' '--without-sim' '--disable-FEATURE' '--disable-gprofng' '--disable-libquadmath' '--disable-libquadmath-support' '--disable-libada' '--disable-libgm2' '--disable-libssp' '--disable-libstdcxx' '--disable-option-checking' --program-transform-name='s&^&avr-&' --disable-option-checking --disable-year2038 --with-build-subdir="$(BUILD_SUBDIR)"
+BUILD_CONFIGARGS =  --cache-file=./config.cache '--prefix=/home/kali/gcc6502cp/avrld' '--disable-gdb' '--disable-nls' '--enable-ld' '--enable-as' --program-transform-name='s&^&avr-&' --disable-option-checking --disable-year2038 --with-build-subdir="$(BUILD_SUBDIR)"
 
 # Linker flags to use on the host, for stage1 or when not
 # bootstrapping.
@@ -180,7 +180,7 @@ SUBDIRS =  libiberty opcodes bfd readline zlib libbacktrace libdecnumber libctf 
 TARGET_CONFIGDIRS = 
 # This is set by the configure script to the arguments to use when configuring
 # directories built for the host system.
-HOST_CONFIGARGS =  --cache-file=./config.cache  --with-gnu-as --with-gnu-ld '--prefix=/home/kali/gcc6502cp/avrld' '--disable-gdb' '--disable-nls' '--enable-ld' '--enable-as' '--without-sim' '--disable-FEATURE' '--disable-gprofng' '--disable-libquadmath' '--disable-libquadmath-support' '--disable-libada' '--disable-libgm2' '--disable-libssp' '--disable-libstdcxx' '--disable-option-checking' --program-transform-name='s&^&avr-&' --disable-option-checking --disable-year2038
+HOST_CONFIGARGS =  --cache-file=./config.cache  --with-gnu-as --with-gnu-ld '--prefix=/home/kali/gcc6502cp/avrld' '--disable-gdb' '--disable-nls' '--enable-ld' '--enable-as' --program-transform-name='s&^&avr-&' --disable-option-checking --disable-year2038
 # Host programs are put under this directory, which is . except if building
 # with srcdir=..
 HOST_SUBDIR = .
@@ -270,7 +270,7 @@ POSTSTAGE1_HOST_EXPORTS = \
 TARGET_SUBDIR = avr
 # This is set by the configure script to the arguments to use when configuring
 # directories built for the target.
-TARGET_CONFIGARGS = --cache-file=./config.cache --enable-multilib --with-cross-host=x86_64-pc-linux-gnu   '--prefix=/home/kali/gcc6502cp/avrld' '--disable-gdb' '--disable-nls' '--enable-ld' '--enable-as' '--without-sim' '--disable-FEATURE' '--disable-gprofng' '--disable-libquadmath' '--disable-libquadmath-support' '--disable-libada' '--disable-libgm2' '--disable-libssp' '--disable-libstdcxx' '--disable-option-checking' --program-transform-name='s&^&avr-&' --disable-option-checking --disable-year2038 --with-target-subdir="$(TARGET_SUBDIR)"
+TARGET_CONFIGARGS = --cache-file=./config.cache --enable-multilib --with-cross-host=x86_64-pc-linux-gnu   '--prefix=/home/kali/gcc6502cp/avrld' '--disable-gdb' '--disable-nls' '--enable-ld' '--enable-as' --program-transform-name='s&^&avr-&' --disable-option-checking --disable-year2038 --with-target-subdir="$(TARGET_SUBDIR)"
 # This is the list of variables to export in the environment when
 # configuring subdirectories for the target system.
 BASE_TARGET_EXPORTS = \

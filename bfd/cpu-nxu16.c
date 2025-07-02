@@ -23,8 +23,8 @@
 
 const bfd_arch_info_type bfd_nxu16_arch =
 {
-  32,		      /* Bits in a word.  */
-  16,		      /* Bits in an address.  */
+  16,		      /* Bits in a word.  */
+  32,		      /* Bits in an address.  */
   8,		      /* Bits in a byte.  */
   bfd_arch_nxu16,    /* Architecture Number.  */
   bfd_mach_nxu16,    /* Machine number.  */

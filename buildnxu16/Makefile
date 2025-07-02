@@ -90,7 +90,7 @@ MAINTAINER_MODE_TRUE = #
 # -------------------------------------------------
 
 # The gcc driver likes to know the arguments it was configured with.
-TOPLEVEL_CONFIGURE_ARGUMENTS=../configure --target=nxu16 --prefix=/home/kali/gcc6502cp/nxu16ld --disable-gdb --disable-nls --disable-ld --enable-as
+TOPLEVEL_CONFIGURE_ARGUMENTS=../configure --target=nxu16 --prefix=/home/kali/gcc6502cp/nxu16ld --disable-gdb --disable-nls --enable-ld --enable-as
 
 tooldir = ${exec_prefix}/nxu16
 build_tooldir = ${exec_prefix}/nxu16
@@ -111,7 +111,7 @@ host_shared = no
 BUILD_SUBDIR = build-x86_64-pc-linux-gnu
 # This is set by the configure script to the arguments to use when configuring
 # directories built for the build system.
-BUILD_CONFIGARGS =  --cache-file=./config.cache '--prefix=/home/kali/gcc6502cp/nxu16ld' '--disable-gdb' '--disable-nls' '--disable-ld' '--enable-as' --program-transform-name='s&^&nxu16-&' --disable-option-checking --disable-year2038 --with-build-subdir="$(BUILD_SUBDIR)"
+BUILD_CONFIGARGS =  --cache-file=./config.cache '--prefix=/home/kali/gcc6502cp/nxu16ld' '--disable-gdb' '--disable-nls' '--enable-ld' '--enable-as' --program-transform-name='s&^&nxu16-&' --disable-option-checking --disable-year2038 --with-build-subdir="$(BUILD_SUBDIR)"
 
 # Linker flags to use on the host, for stage1 or when not
 # bootstrapping.
@@ -176,11 +176,11 @@ EXTRA_BUILD_FLAGS = \
 	LDFLAGS="$(LDFLAGS_FOR_BUILD)"
 
 # This is the list of directories to built for the host system.
-SUBDIRS =  libiberty opcodes bfd readline zlib libbacktrace libdecnumber libctf libsframe binutils gas sim gprof etc gnulib
+SUBDIRS =  libiberty opcodes bfd readline zlib libbacktrace libdecnumber libctf libsframe binutils gas ld sim gprof etc gnulib
 TARGET_CONFIGDIRS = 
 # This is set by the configure script to the arguments to use when configuring
 # directories built for the host system.
-HOST_CONFIGARGS =  --cache-file=./config.cache  --with-gnu-as '--prefix=/home/kali/gcc6502cp/nxu16ld' '--disable-gdb' '--disable-nls' '--disable-ld' '--enable-as' --program-transform-name='s&^&nxu16-&' --disable-option-checking --disable-year2038
+HOST_CONFIGARGS =  --cache-file=./config.cache  --with-gnu-as --with-gnu-ld '--prefix=/home/kali/gcc6502cp/nxu16ld' '--disable-gdb' '--disable-nls' '--enable-ld' '--enable-as' --program-transform-name='s&^&nxu16-&' --disable-option-checking --disable-year2038
 # Host programs are put under this directory, which is . except if building
 # with srcdir=..
 HOST_SUBDIR = .
@@ -270,7 +270,7 @@ POSTSTAGE1_HOST_EXPORTS = \
 TARGET_SUBDIR = nxu16
 # This is set by the configure script to the arguments to use when configuring
 # directories built for the target.
-TARGET_CONFIGARGS = --cache-file=./config.cache --enable-multilib --with-cross-host=x86_64-pc-linux-gnu   '--prefix=/home/kali/gcc6502cp/nxu16ld' '--disable-gdb' '--disable-nls' '--disable-ld' '--enable-as' --program-transform-name='s&^&nxu16-&' --disable-option-checking --disable-year2038 --with-target-subdir="$(TARGET_SUBDIR)"
+TARGET_CONFIGARGS = --cache-file=./config.cache --enable-multilib --with-cross-host=x86_64-pc-linux-gnu   '--prefix=/home/kali/gcc6502cp/nxu16ld' '--disable-gdb' '--disable-nls' '--enable-ld' '--enable-as' --program-transform-name='s&^&nxu16-&' --disable-option-checking --disable-year2038 --with-target-subdir="$(TARGET_SUBDIR)"
 # This is the list of variables to export in the environment when
 # configuring subdirectories for the target system.
 BASE_TARGET_EXPORTS = \
@@ -575,7 +575,7 @@ STAGEfeedback_TFLAGS = $(STAGE4_TFLAGS)
 # Disable warnings as errors for a few reasons:
 # - sources for gen* binaries do not have .gcda files available
 # - inlining decisions generate extra warnings
-STAGEfeedback_CONFIGURE_FLAGS = $(filter-out --disable-werror-always,$(STAGE_CONFIGURE_FLAGS))
+STAGEfeedback_CONFIGURE_FLAGS = $(filter-out --enable-werror-always,$(STAGE_CONFIGURE_FLAGS))
 
 STAGEautoprofile_CFLAGS = $(filter-out -gtoggle,$(STAGE2_CFLAGS)) -g
 STAGEautoprofile_TFLAGS = $(STAGE2_TFLAGS)
@@ -584,7 +584,7 @@ STAGEautofeedback_CFLAGS = $(STAGE3_CFLAGS)
 STAGEautofeedback_TFLAGS = $(STAGE3_TFLAGS)
 # Disable warnings as errors since inlining decisions with -fauto-profile
 # may result in additional warnings.
-STAGEautofeedback_CONFIGURE_FLAGS = $(filter-out --disable-werror-always,$(STAGE_CONFIGURE_FLAGS))
+STAGEautofeedback_CONFIGURE_FLAGS = $(filter-out --enable-werror-always,$(STAGE_CONFIGURE_FLAGS))
 
 do-compare = cmp --ignore-initial=16 $$f1 $$f2
 do-compare3 = $(do-compare)
@@ -610,7 +610,7 @@ GDC_FOR_TARGET=$(STAGE_CC_WRAPPER) nxu16-gdc
 GM2_FOR_TARGET=$(STAGE_CC_WRAPPER) nxu16-gm2
 DLLTOOL_FOR_TARGET=$$r/$(HOST_SUBDIR)/binutils/dlltool
 DSYMUTIL_FOR_TARGET=nxu16-dsymutil
-LD_FOR_TARGET=nxu16-ld
+LD_FOR_TARGET=$$r/$(HOST_SUBDIR)/ld/ld-new
 
 LIPO_FOR_TARGET=nxu16-lipo
 NM_FOR_TARGET=$$r/$(HOST_SUBDIR)/binutils/nm-new
@@ -637,7 +637,7 @@ GM2FLAGS_FOR_TARGET = -O2 -g
 GOCFLAGS_FOR_TARGET = -O2 -g
 GDCFLAGS_FOR_TARGET = -O2 -g
 
-FLAGS_FOR_TARGET = 
+FLAGS_FOR_TARGET =  -L$$r/$(HOST_SUBDIR)/ld
 SYSROOT_CFLAGS_FOR_TARGET = 
 DEBUG_PREFIX_CFLAGS_FOR_TARGET = 
 
@@ -1056,6 +1056,7 @@ all-host: maybe-all-gprof
 all-host: maybe-all-gprofng
 all-host: maybe-all-tcl
 all-host: maybe-all-itcl
+all-host: maybe-all-ld
 all-host: maybe-all-libbacktrace
 all-host: maybe-all-libdecnumber
 all-host: maybe-all-libgui
@@ -7639,6 +7640,27 @@ maybe-maintainer-clean-itcl:
 
 .PHONY: configure-ld maybe-configure-ld
 maybe-configure-ld:
+maybe-configure-ld: configure-ld
+configure-ld: 
+	@r=`${PWD_COMMAND}`; export r; \
+	s=`cd $(srcdir); ${PWD_COMMAND}`; export s; \
+	test ! -f $(HOST_SUBDIR)/ld/Makefile || exit 0; \
+	$(SHELL) $(srcdir)/mkinstalldirs $(HOST_SUBDIR)/ld; \
+	$(HOST_EXPORTS)  \
+	echo Configuring in $(HOST_SUBDIR)/ld; \
+	cd "$(HOST_SUBDIR)/ld" || exit 1; \
+	case $(srcdir) in \
+	  /* | [A-Za-z]:[\\/]*) topdir=$(srcdir) ;; \
+	  *) topdir=`echo $(HOST_SUBDIR)/ld/ | \
+		sed -e 's,\./,,g' -e 's,[^/]*/,../,g' `$(srcdir) ;; \
+	esac; \
+	module_srcdir=ld; \
+	$(SHELL) \
+	  $$s/$$module_srcdir/configure \
+	  --srcdir=$${topdir}/$$module_srcdir \
+	  $(HOST_CONFIGARGS) --build=${build_alias} --host=${host_alias} \
+	  --target=${target_alias}  \
+	  || exit 1
 
 
 
@@ -7675,6 +7697,15 @@ maybe-configure-stageautofeedback-ld:
 
 .PHONY: all-ld maybe-all-ld
 maybe-all-ld:
+TARGET-ld=all
+maybe-all-ld: all-ld
+all-ld: configure-ld
+	@r=`${PWD_COMMAND}`; export r; \
+	s=`cd $(srcdir); ${PWD_COMMAND}`; export s; \
+	$(HOST_EXPORTS)  \
+	(cd $(HOST_SUBDIR)/ld && \
+	  $(MAKE) $(BASE_FLAGS_TO_PASS) $(EXTRA_HOST_FLAGS) $(STAGE1_FLAGS_TO_PASS)  \
+		$(TARGET-ld))
 
 
 
@@ -7737,56 +7768,366 @@ maybe-clean-stageautofeedback-ld:
 
 .PHONY: check-ld maybe-check-ld
 maybe-check-ld:
+maybe-check-ld: check-ld
+
+check-ld:
+	@: $(MAKE); $(unstage)
+	@r=`${PWD_COMMAND}`; export r; \
+	s=`cd $(srcdir); ${PWD_COMMAND}`; export s; \
+	$(HOST_EXPORTS) $(EXTRA_HOST_EXPORTS) \
+	(cd $(HOST_SUBDIR)/ld && \
+	  $(MAKE) $(FLAGS_TO_PASS)  $(EXTRA_BOOTSTRAP_FLAGS) check)
+
 
 .PHONY: install-ld maybe-install-ld
 maybe-install-ld:
+maybe-install-ld: install-ld
+
+install-ld: installdirs
+	@: $(MAKE); $(unstage)
+	@r=`${PWD_COMMAND}`; export r; \
+	s=`cd $(srcdir); ${PWD_COMMAND}`; export s; \
+	$(HOST_EXPORTS) \
+	(cd $(HOST_SUBDIR)/ld && \
+	  $(MAKE) $(FLAGS_TO_PASS)  install)
+
 
 .PHONY: install-strip-ld maybe-install-strip-ld
 maybe-install-strip-ld:
+maybe-install-strip-ld: install-strip-ld
+
+install-strip-ld: installdirs
+	@: $(MAKE); $(unstage)
+	@r=`${PWD_COMMAND}`; export r; \
+	s=`cd $(srcdir); ${PWD_COMMAND}`; export s; \
+	$(HOST_EXPORTS) \
+	(cd $(HOST_SUBDIR)/ld && \
+	  $(MAKE) $(FLAGS_TO_PASS)  install-strip)
+
 
 # Other targets (info, dvi, pdf, etc.)
 
 .PHONY: maybe-info-ld info-ld
 maybe-info-ld:
+maybe-info-ld: info-ld
+
+info-ld: \
+    configure-ld 
+	@[ -f ./ld/Makefile ] || exit 0; \
+	r=`${PWD_COMMAND}`; export r; \
+	s=`cd $(srcdir); ${PWD_COMMAND}`; export s; \
+	$(HOST_EXPORTS) \
+	for flag in $(EXTRA_HOST_FLAGS) ; do \
+	  eval `echo "$$flag" | sed -e "s|^\([^=]*\)=\(.*\)|\1='\2'; export \1|"`; \
+	done; \
+	echo "Doing info in ld"; \
+	(cd $(HOST_SUBDIR)/ld && \
+	  $(MAKE) $(BASE_FLAGS_TO_PASS) "AR=$${AR}" "AS=$${AS}" \
+	          "CC=$${CC}" "CXX=$${CXX}" "LD=$${LD}" "NM=$${NM}" \
+	          "RANLIB=$${RANLIB}" \
+	          "DLLTOOL=$${DLLTOOL}" "WINDRES=$${WINDRES}" "WINDMC=$${WINDMC}" \
+	          info) \
+	  || exit 1
+
 
 .PHONY: maybe-dvi-ld dvi-ld
 maybe-dvi-ld:
+maybe-dvi-ld: dvi-ld
+
+dvi-ld: \
+    configure-ld 
+	@[ -f ./ld/Makefile ] || exit 0; \
+	r=`${PWD_COMMAND}`; export r; \
+	s=`cd $(srcdir); ${PWD_COMMAND}`; export s; \
+	$(HOST_EXPORTS) \
+	for flag in $(EXTRA_HOST_FLAGS) ; do \
+	  eval `echo "$$flag" | sed -e "s|^\([^=]*\)=\(.*\)|\1='\2'; export \1|"`; \
+	done; \
+	echo "Doing dvi in ld"; \
+	(cd $(HOST_SUBDIR)/ld && \
+	  $(MAKE) $(BASE_FLAGS_TO_PASS) "AR=$${AR}" "AS=$${AS}" \
+	          "CC=$${CC}" "CXX=$${CXX}" "LD=$${LD}" "NM=$${NM}" \
+	          "RANLIB=$${RANLIB}" \
+	          "DLLTOOL=$${DLLTOOL}" "WINDRES=$${WINDRES}" "WINDMC=$${WINDMC}" \
+	          dvi) \
+	  || exit 1
+
 
 .PHONY: maybe-pdf-ld pdf-ld
 maybe-pdf-ld:
+maybe-pdf-ld: pdf-ld
+
+pdf-ld: \
+    configure-ld 
+	@[ -f ./ld/Makefile ] || exit 0; \
+	r=`${PWD_COMMAND}`; export r; \
+	s=`cd $(srcdir); ${PWD_COMMAND}`; export s; \
+	$(HOST_EXPORTS) \
+	for flag in $(EXTRA_HOST_FLAGS) ; do \
+	  eval `echo "$$flag" | sed -e "s|^\([^=]*\)=\(.*\)|\1='\2'; export \1|"`; \
+	done; \
+	echo "Doing pdf in ld"; \
+	(cd $(HOST_SUBDIR)/ld && \
+	  $(MAKE) $(BASE_FLAGS_TO_PASS) "AR=$${AR}" "AS=$${AS}" \
+	          "CC=$${CC}" "CXX=$${CXX}" "LD=$${LD}" "NM=$${NM}" \
+	          "RANLIB=$${RANLIB}" \
+	          "DLLTOOL=$${DLLTOOL}" "WINDRES=$${WINDRES}" "WINDMC=$${WINDMC}" \
+	          pdf) \
+	  || exit 1
+
 
 .PHONY: maybe-html-ld html-ld
 maybe-html-ld:
+maybe-html-ld: html-ld
+
+html-ld: \
+    configure-ld 
+	@[ -f ./ld/Makefile ] || exit 0; \
+	r=`${PWD_COMMAND}`; export r; \
+	s=`cd $(srcdir); ${PWD_COMMAND}`; export s; \
+	$(HOST_EXPORTS) \
+	for flag in $(EXTRA_HOST_FLAGS) ; do \
+	  eval `echo "$$flag" | sed -e "s|^\([^=]*\)=\(.*\)|\1='\2'; export \1|"`; \
+	done; \
+	echo "Doing html in ld"; \
+	(cd $(HOST_SUBDIR)/ld && \
+	  $(MAKE) $(BASE_FLAGS_TO_PASS) "AR=$${AR}" "AS=$${AS}" \
+	          "CC=$${CC}" "CXX=$${CXX}" "LD=$${LD}" "NM=$${NM}" \
+	          "RANLIB=$${RANLIB}" \
+	          "DLLTOOL=$${DLLTOOL}" "WINDRES=$${WINDRES}" "WINDMC=$${WINDMC}" \
+	          html) \
+	  || exit 1
+
 
 .PHONY: maybe-TAGS-ld TAGS-ld
 maybe-TAGS-ld:
+maybe-TAGS-ld: TAGS-ld
+
+TAGS-ld: \
+    configure-ld 
+	@[ -f ./ld/Makefile ] || exit 0; \
+	r=`${PWD_COMMAND}`; export r; \
+	s=`cd $(srcdir); ${PWD_COMMAND}`; export s; \
+	$(HOST_EXPORTS) \
+	for flag in $(EXTRA_HOST_FLAGS) ; do \
+	  eval `echo "$$flag" | sed -e "s|^\([^=]*\)=\(.*\)|\1='\2'; export \1|"`; \
+	done; \
+	echo "Doing TAGS in ld"; \
+	(cd $(HOST_SUBDIR)/ld && \
+	  $(MAKE) $(BASE_FLAGS_TO_PASS) "AR=$${AR}" "AS=$${AS}" \
+	          "CC=$${CC}" "CXX=$${CXX}" "LD=$${LD}" "NM=$${NM}" \
+	          "RANLIB=$${RANLIB}" \
+	          "DLLTOOL=$${DLLTOOL}" "WINDRES=$${WINDRES}" "WINDMC=$${WINDMC}" \
+	          TAGS) \
+	  || exit 1
+
 
 .PHONY: maybe-install-info-ld install-info-ld
 maybe-install-info-ld:
+maybe-install-info-ld: install-info-ld
+
+install-info-ld: \
+    configure-ld \
+    info-ld 
+	@[ -f ./ld/Makefile ] || exit 0; \
+	r=`${PWD_COMMAND}`; export r; \
+	s=`cd $(srcdir); ${PWD_COMMAND}`; export s; \
+	$(HOST_EXPORTS) \
+	for flag in $(EXTRA_HOST_FLAGS) ; do \
+	  eval `echo "$$flag" | sed -e "s|^\([^=]*\)=\(.*\)|\1='\2'; export \1|"`; \
+	done; \
+	echo "Doing install-info in ld"; \
+	(cd $(HOST_SUBDIR)/ld && \
+	  $(MAKE) $(BASE_FLAGS_TO_PASS) "AR=$${AR}" "AS=$${AS}" \
+	          "CC=$${CC}" "CXX=$${CXX}" "LD=$${LD}" "NM=$${NM}" \
+	          "RANLIB=$${RANLIB}" \
+	          "DLLTOOL=$${DLLTOOL}" "WINDRES=$${WINDRES}" "WINDMC=$${WINDMC}" \
+	          install-info) \
+	  || exit 1
+
 
 .PHONY: maybe-install-dvi-ld install-dvi-ld
 maybe-install-dvi-ld:
+maybe-install-dvi-ld: install-dvi-ld
+
+install-dvi-ld: \
+    configure-ld \
+    dvi-ld 
+	@[ -f ./ld/Makefile ] || exit 0; \
+	r=`${PWD_COMMAND}`; export r; \
+	s=`cd $(srcdir); ${PWD_COMMAND}`; export s; \
+	$(HOST_EXPORTS) \
+	for flag in $(EXTRA_HOST_FLAGS) ; do \
+	  eval `echo "$$flag" | sed -e "s|^\([^=]*\)=\(.*\)|\1='\2'; export \1|"`; \
+	done; \
+	echo "Doing install-dvi in ld"; \
+	(cd $(HOST_SUBDIR)/ld && \
+	  $(MAKE) $(BASE_FLAGS_TO_PASS) "AR=$${AR}" "AS=$${AS}" \
+	          "CC=$${CC}" "CXX=$${CXX}" "LD=$${LD}" "NM=$${NM}" \
+	          "RANLIB=$${RANLIB}" \
+	          "DLLTOOL=$${DLLTOOL}" "WINDRES=$${WINDRES}" "WINDMC=$${WINDMC}" \
+	          install-dvi) \
+	  || exit 1
+
 
 .PHONY: maybe-install-pdf-ld install-pdf-ld
 maybe-install-pdf-ld:
+maybe-install-pdf-ld: install-pdf-ld
+
+install-pdf-ld: \
+    configure-ld \
+    pdf-ld 
+	@[ -f ./ld/Makefile ] || exit 0; \
+	r=`${PWD_COMMAND}`; export r; \
+	s=`cd $(srcdir); ${PWD_COMMAND}`; export s; \
+	$(HOST_EXPORTS) \
+	for flag in $(EXTRA_HOST_FLAGS) ; do \
+	  eval `echo "$$flag" | sed -e "s|^\([^=]*\)=\(.*\)|\1='\2'; export \1|"`; \
+	done; \
+	echo "Doing install-pdf in ld"; \
+	(cd $(HOST_SUBDIR)/ld && \
+	  $(MAKE) $(BASE_FLAGS_TO_PASS) "AR=$${AR}" "AS=$${AS}" \
+	          "CC=$${CC}" "CXX=$${CXX}" "LD=$${LD}" "NM=$${NM}" \
+	          "RANLIB=$${RANLIB}" \
+	          "DLLTOOL=$${DLLTOOL}" "WINDRES=$${WINDRES}" "WINDMC=$${WINDMC}" \
+	          install-pdf) \
+	  || exit 1
+
 
 .PHONY: maybe-install-html-ld install-html-ld
 maybe-install-html-ld:
+maybe-install-html-ld: install-html-ld
+
+install-html-ld: \
+    configure-ld \
+    html-ld 
+	@[ -f ./ld/Makefile ] || exit 0; \
+	r=`${PWD_COMMAND}`; export r; \
+	s=`cd $(srcdir); ${PWD_COMMAND}`; export s; \
+	$(HOST_EXPORTS) \
+	for flag in $(EXTRA_HOST_FLAGS) ; do \
+	  eval `echo "$$flag" | sed -e "s|^\([^=]*\)=\(.*\)|\1='\2'; export \1|"`; \
+	done; \
+	echo "Doing install-html in ld"; \
+	(cd $(HOST_SUBDIR)/ld && \
+	  $(MAKE) $(BASE_FLAGS_TO_PASS) "AR=$${AR}" "AS=$${AS}" \
+	          "CC=$${CC}" "CXX=$${CXX}" "LD=$${LD}" "NM=$${NM}" \
+	          "RANLIB=$${RANLIB}" \
+	          "DLLTOOL=$${DLLTOOL}" "WINDRES=$${WINDRES}" "WINDMC=$${WINDMC}" \
+	          install-html) \
+	  || exit 1
+
 
 .PHONY: maybe-installcheck-ld installcheck-ld
 maybe-installcheck-ld:
+maybe-installcheck-ld: installcheck-ld
+
+installcheck-ld: \
+    configure-ld 
+	@[ -f ./ld/Makefile ] || exit 0; \
+	r=`${PWD_COMMAND}`; export r; \
+	s=`cd $(srcdir); ${PWD_COMMAND}`; export s; \
+	$(HOST_EXPORTS) \
+	for flag in $(EXTRA_HOST_FLAGS) ; do \
+	  eval `echo "$$flag" | sed -e "s|^\([^=]*\)=\(.*\)|\1='\2'; export \1|"`; \
+	done; \
+	echo "Doing installcheck in ld"; \
+	(cd $(HOST_SUBDIR)/ld && \
+	  $(MAKE) $(BASE_FLAGS_TO_PASS) "AR=$${AR}" "AS=$${AS}" \
+	          "CC=$${CC}" "CXX=$${CXX}" "LD=$${LD}" "NM=$${NM}" \
+	          "RANLIB=$${RANLIB}" \
+	          "DLLTOOL=$${DLLTOOL}" "WINDRES=$${WINDRES}" "WINDMC=$${WINDMC}" \
+	          installcheck) \
+	  || exit 1
+
 
 .PHONY: maybe-mostlyclean-ld mostlyclean-ld
 maybe-mostlyclean-ld:
+maybe-mostlyclean-ld: mostlyclean-ld
+
+mostlyclean-ld: 
+	@[ -f ./ld/Makefile ] || exit 0; \
+	r=`${PWD_COMMAND}`; export r; \
+	s=`cd $(srcdir); ${PWD_COMMAND}`; export s; \
+	$(HOST_EXPORTS) \
+	for flag in $(EXTRA_HOST_FLAGS) ; do \
+	  eval `echo "$$flag" | sed -e "s|^\([^=]*\)=\(.*\)|\1='\2'; export \1|"`; \
+	done; \
+	echo "Doing mostlyclean in ld"; \
+	(cd $(HOST_SUBDIR)/ld && \
+	  $(MAKE) $(BASE_FLAGS_TO_PASS) "AR=$${AR}" "AS=$${AS}" \
+	          "CC=$${CC}" "CXX=$${CXX}" "LD=$${LD}" "NM=$${NM}" \
+	          "RANLIB=$${RANLIB}" \
+	          "DLLTOOL=$${DLLTOOL}" "WINDRES=$${WINDRES}" "WINDMC=$${WINDMC}" \
+	          mostlyclean) \
+	  || exit 1
+
 
 .PHONY: maybe-clean-ld clean-ld
 maybe-clean-ld:
+maybe-clean-ld: clean-ld
+
+clean-ld: 
+	@[ -f ./ld/Makefile ] || exit 0; \
+	r=`${PWD_COMMAND}`; export r; \
+	s=`cd $(srcdir); ${PWD_COMMAND}`; export s; \
+	$(HOST_EXPORTS) \
+	for flag in $(EXTRA_HOST_FLAGS) ; do \
+	  eval `echo "$$flag" | sed -e "s|^\([^=]*\)=\(.*\)|\1='\2'; export \1|"`; \
+	done; \
+	echo "Doing clean in ld"; \
+	(cd $(HOST_SUBDIR)/ld && \
+	  $(MAKE) $(BASE_FLAGS_TO_PASS) "AR=$${AR}" "AS=$${AS}" \
+	          "CC=$${CC}" "CXX=$${CXX}" "LD=$${LD}" "NM=$${NM}" \
+	          "RANLIB=$${RANLIB}" \
+	          "DLLTOOL=$${DLLTOOL}" "WINDRES=$${WINDRES}" "WINDMC=$${WINDMC}" \
+	          clean) \
+	  || exit 1
+
 
 .PHONY: maybe-distclean-ld distclean-ld
 maybe-distclean-ld:
+maybe-distclean-ld: distclean-ld
+
+distclean-ld: 
+	@[ -f ./ld/Makefile ] || exit 0; \
+	r=`${PWD_COMMAND}`; export r; \
+	s=`cd $(srcdir); ${PWD_COMMAND}`; export s; \
+	$(HOST_EXPORTS) \
+	for flag in $(EXTRA_HOST_FLAGS) ; do \
+	  eval `echo "$$flag" | sed -e "s|^\([^=]*\)=\(.*\)|\1='\2'; export \1|"`; \
+	done; \
+	echo "Doing distclean in ld"; \
+	(cd $(HOST_SUBDIR)/ld && \
+	  $(MAKE) $(BASE_FLAGS_TO_PASS) "AR=$${AR}" "AS=$${AS}" \
+	          "CC=$${CC}" "CXX=$${CXX}" "LD=$${LD}" "NM=$${NM}" \
+	          "RANLIB=$${RANLIB}" \
+	          "DLLTOOL=$${DLLTOOL}" "WINDRES=$${WINDRES}" "WINDMC=$${WINDMC}" \
+	          distclean) \
+	  || exit 1
+
 
 .PHONY: maybe-maintainer-clean-ld maintainer-clean-ld
 maybe-maintainer-clean-ld:
+maybe-maintainer-clean-ld: maintainer-clean-ld
+
+maintainer-clean-ld: 
+	@[ -f ./ld/Makefile ] || exit 0; \
+	r=`${PWD_COMMAND}`; export r; \
+	s=`cd $(srcdir); ${PWD_COMMAND}`; export s; \
+	$(HOST_EXPORTS) \
+	for flag in $(EXTRA_HOST_FLAGS) ; do \
+	  eval `echo "$$flag" | sed -e "s|^\([^=]*\)=\(.*\)|\1='\2'; export \1|"`; \
+	done; \
+	echo "Doing maintainer-clean in ld"; \
+	(cd $(HOST_SUBDIR)/ld && \
+	  $(MAKE) $(BASE_FLAGS_TO_PASS) "AR=$${AR}" "AS=$${AS}" \
+	          "CC=$${CC}" "CXX=$${CXX}" "LD=$${LD}" "NM=$${NM}" \
+	          "RANLIB=$${RANLIB}" \
+	          "DLLTOOL=$${DLLTOOL}" "WINDRES=$${WINDRES}" "WINDMC=$${WINDMC}" \
+	          maintainer-clean) \
+	  || exit 1
+
 
 
 
@@ -16455,6 +16796,9 @@ stage1-start::
 	@cd $(HOST_SUBDIR); [ -d stage1-gas ] || \
 	  mkdir stage1-gas; \
 	mv stage1-gas gas
+	@cd $(HOST_SUBDIR); [ -d stage1-ld ] || \
+	  mkdir stage1-ld; \
+	mv stage1-ld ld
 	@cd $(HOST_SUBDIR); [ -d stage1-libbacktrace ] || \
 	  mkdir stage1-libbacktrace; \
 	mv stage1-libbacktrace libbacktrace
@@ -16489,6 +16833,9 @@ stage1-end::
 	fi
 	@if test -d $(HOST_SUBDIR)/gas; then \
 	  cd $(HOST_SUBDIR); mv gas stage1-gas; \
+	fi
+	@if test -d $(HOST_SUBDIR)/ld; then \
+	  cd $(HOST_SUBDIR); mv ld stage1-ld; \
 	fi
 	@if test -d $(HOST_SUBDIR)/libbacktrace; then \
 	  cd $(HOST_SUBDIR); mv libbacktrace stage1-libbacktrace; \
@@ -16557,6 +16904,10 @@ stage2-start::
 	  mkdir stage2-gas; \
 	mv stage2-gas gas; \
 	mv stage1-gas prev-gas || test -f stage1-lean 
+	@cd $(HOST_SUBDIR); [ -d stage2-ld ] || \
+	  mkdir stage2-ld; \
+	mv stage2-ld ld; \
+	mv stage1-ld prev-ld || test -f stage1-lean 
 	@cd $(HOST_SUBDIR); [ -d stage2-libbacktrace ] || \
 	  mkdir stage2-libbacktrace; \
 	mv stage2-libbacktrace libbacktrace; \
@@ -16602,6 +16953,10 @@ stage2-end::
 	@if test -d $(HOST_SUBDIR)/gas; then \
 	  cd $(HOST_SUBDIR); mv gas stage2-gas; \
 	  mv prev-gas stage1-gas; : ; \
+	fi
+	@if test -d $(HOST_SUBDIR)/ld; then \
+	  cd $(HOST_SUBDIR); mv ld stage2-ld; \
+	  mv prev-ld stage1-ld; : ; \
 	fi
 	@if test -d $(HOST_SUBDIR)/libbacktrace; then \
 	  cd $(HOST_SUBDIR); mv libbacktrace stage2-libbacktrace; \
@@ -16677,6 +17032,10 @@ stage3-start::
 	  mkdir stage3-gas; \
 	mv stage3-gas gas; \
 	mv stage2-gas prev-gas || test -f stage2-lean 
+	@cd $(HOST_SUBDIR); [ -d stage3-ld ] || \
+	  mkdir stage3-ld; \
+	mv stage3-ld ld; \
+	mv stage2-ld prev-ld || test -f stage2-lean 
 	@cd $(HOST_SUBDIR); [ -d stage3-libbacktrace ] || \
 	  mkdir stage3-libbacktrace; \
 	mv stage3-libbacktrace libbacktrace; \
@@ -16722,6 +17081,10 @@ stage3-end::
 	@if test -d $(HOST_SUBDIR)/gas; then \
 	  cd $(HOST_SUBDIR); mv gas stage3-gas; \
 	  mv prev-gas stage2-gas; : ; \
+	fi
+	@if test -d $(HOST_SUBDIR)/ld; then \
+	  cd $(HOST_SUBDIR); mv ld stage3-ld; \
+	  mv prev-ld stage2-ld; : ; \
 	fi
 	@if test -d $(HOST_SUBDIR)/libbacktrace; then \
 	  cd $(HOST_SUBDIR); mv libbacktrace stage3-libbacktrace; \
@@ -16802,6 +17165,10 @@ stage4-start::
 	  mkdir stage4-gas; \
 	mv stage4-gas gas; \
 	mv stage3-gas prev-gas || test -f stage3-lean 
+	@cd $(HOST_SUBDIR); [ -d stage4-ld ] || \
+	  mkdir stage4-ld; \
+	mv stage4-ld ld; \
+	mv stage3-ld prev-ld || test -f stage3-lean 
 	@cd $(HOST_SUBDIR); [ -d stage4-libbacktrace ] || \
 	  mkdir stage4-libbacktrace; \
 	mv stage4-libbacktrace libbacktrace; \
@@ -16847,6 +17214,10 @@ stage4-end::
 	@if test -d $(HOST_SUBDIR)/gas; then \
 	  cd $(HOST_SUBDIR); mv gas stage4-gas; \
 	  mv prev-gas stage3-gas; : ; \
+	fi
+	@if test -d $(HOST_SUBDIR)/ld; then \
+	  cd $(HOST_SUBDIR); mv ld stage4-ld; \
+	  mv prev-ld stage3-ld; : ; \
 	fi
 	@if test -d $(HOST_SUBDIR)/libbacktrace; then \
 	  cd $(HOST_SUBDIR); mv libbacktrace stage4-libbacktrace; \
@@ -16927,6 +17298,10 @@ stageprofile-start::
 	  mkdir stageprofile-gas; \
 	mv stageprofile-gas gas; \
 	mv stage1-gas prev-gas || test -f stage1-lean 
+	@cd $(HOST_SUBDIR); [ -d stageprofile-ld ] || \
+	  mkdir stageprofile-ld; \
+	mv stageprofile-ld ld; \
+	mv stage1-ld prev-ld || test -f stage1-lean 
 	@cd $(HOST_SUBDIR); [ -d stageprofile-libbacktrace ] || \
 	  mkdir stageprofile-libbacktrace; \
 	mv stageprofile-libbacktrace libbacktrace; \
@@ -16972,6 +17347,10 @@ stageprofile-end::
 	@if test -d $(HOST_SUBDIR)/gas; then \
 	  cd $(HOST_SUBDIR); mv gas stageprofile-gas; \
 	  mv prev-gas stage1-gas; : ; \
+	fi
+	@if test -d $(HOST_SUBDIR)/ld; then \
+	  cd $(HOST_SUBDIR); mv ld stageprofile-ld; \
+	  mv prev-ld stage1-ld; : ; \
 	fi
 	@if test -d $(HOST_SUBDIR)/libbacktrace; then \
 	  cd $(HOST_SUBDIR); mv libbacktrace stageprofile-libbacktrace; \
@@ -17047,6 +17426,10 @@ stagetrain-start::
 	  mkdir stagetrain-gas; \
 	mv stagetrain-gas gas; \
 	mv stageprofile-gas prev-gas || test -f stageprofile-lean 
+	@cd $(HOST_SUBDIR); [ -d stagetrain-ld ] || \
+	  mkdir stagetrain-ld; \
+	mv stagetrain-ld ld; \
+	mv stageprofile-ld prev-ld || test -f stageprofile-lean 
 	@cd $(HOST_SUBDIR); [ -d stagetrain-libbacktrace ] || \
 	  mkdir stagetrain-libbacktrace; \
 	mv stagetrain-libbacktrace libbacktrace; \
@@ -17092,6 +17475,10 @@ stagetrain-end::
 	@if test -d $(HOST_SUBDIR)/gas; then \
 	  cd $(HOST_SUBDIR); mv gas stagetrain-gas; \
 	  mv prev-gas stageprofile-gas; : ; \
+	fi
+	@if test -d $(HOST_SUBDIR)/ld; then \
+	  cd $(HOST_SUBDIR); mv ld stagetrain-ld; \
+	  mv prev-ld stageprofile-ld; : ; \
 	fi
 	@if test -d $(HOST_SUBDIR)/libbacktrace; then \
 	  cd $(HOST_SUBDIR); mv libbacktrace stagetrain-libbacktrace; \
@@ -17167,6 +17554,10 @@ stagefeedback-start::
 	  mkdir stagefeedback-gas; \
 	mv stagefeedback-gas gas; \
 	mv stagetrain-gas prev-gas || test -f stagetrain-lean 
+	@cd $(HOST_SUBDIR); [ -d stagefeedback-ld ] || \
+	  mkdir stagefeedback-ld; \
+	mv stagefeedback-ld ld; \
+	mv stagetrain-ld prev-ld || test -f stagetrain-lean 
 	@cd $(HOST_SUBDIR); [ -d stagefeedback-libbacktrace ] || \
 	  mkdir stagefeedback-libbacktrace; \
 	mv stagefeedback-libbacktrace libbacktrace; \
@@ -17212,6 +17603,10 @@ stagefeedback-end::
 	@if test -d $(HOST_SUBDIR)/gas; then \
 	  cd $(HOST_SUBDIR); mv gas stagefeedback-gas; \
 	  mv prev-gas stagetrain-gas; : ; \
+	fi
+	@if test -d $(HOST_SUBDIR)/ld; then \
+	  cd $(HOST_SUBDIR); mv ld stagefeedback-ld; \
+	  mv prev-ld stagetrain-ld; : ; \
 	fi
 	@if test -d $(HOST_SUBDIR)/libbacktrace; then \
 	  cd $(HOST_SUBDIR); mv libbacktrace stagefeedback-libbacktrace; \
@@ -17287,6 +17682,10 @@ stageautoprofile-start::
 	  mkdir stageautoprofile-gas; \
 	mv stageautoprofile-gas gas; \
 	mv stage1-gas prev-gas || test -f stage1-lean 
+	@cd $(HOST_SUBDIR); [ -d stageautoprofile-ld ] || \
+	  mkdir stageautoprofile-ld; \
+	mv stageautoprofile-ld ld; \
+	mv stage1-ld prev-ld || test -f stage1-lean 
 	@cd $(HOST_SUBDIR); [ -d stageautoprofile-libbacktrace ] || \
 	  mkdir stageautoprofile-libbacktrace; \
 	mv stageautoprofile-libbacktrace libbacktrace; \
@@ -17332,6 +17731,10 @@ stageautoprofile-end::
 	@if test -d $(HOST_SUBDIR)/gas; then \
 	  cd $(HOST_SUBDIR); mv gas stageautoprofile-gas; \
 	  mv prev-gas stage1-gas; : ; \
+	fi
+	@if test -d $(HOST_SUBDIR)/ld; then \
+	  cd $(HOST_SUBDIR); mv ld stageautoprofile-ld; \
+	  mv prev-ld stage1-ld; : ; \
 	fi
 	@if test -d $(HOST_SUBDIR)/libbacktrace; then \
 	  cd $(HOST_SUBDIR); mv libbacktrace stageautoprofile-libbacktrace; \
@@ -17407,6 +17810,10 @@ stageautofeedback-start::
 	  mkdir stageautofeedback-gas; \
 	mv stageautofeedback-gas gas; \
 	mv stageautoprofile-gas prev-gas || test -f stageautoprofile-lean 
+	@cd $(HOST_SUBDIR); [ -d stageautofeedback-ld ] || \
+	  mkdir stageautofeedback-ld; \
+	mv stageautofeedback-ld ld; \
+	mv stageautoprofile-ld prev-ld || test -f stageautoprofile-lean 
 	@cd $(HOST_SUBDIR); [ -d stageautofeedback-libbacktrace ] || \
 	  mkdir stageautofeedback-libbacktrace; \
 	mv stageautofeedback-libbacktrace libbacktrace; \
@@ -17452,6 +17859,10 @@ stageautofeedback-end::
 	@if test -d $(HOST_SUBDIR)/gas; then \
 	  cd $(HOST_SUBDIR); mv gas stageautofeedback-gas; \
 	  mv prev-gas stageautoprofile-gas; : ; \
+	fi
+	@if test -d $(HOST_SUBDIR)/ld; then \
+	  cd $(HOST_SUBDIR); mv ld stageautofeedback-ld; \
+	  mv prev-ld stageautoprofile-ld; : ; \
 	fi
 	@if test -d $(HOST_SUBDIR)/libbacktrace; then \
 	  cd $(HOST_SUBDIR); mv libbacktrace stageautofeedback-libbacktrace; \

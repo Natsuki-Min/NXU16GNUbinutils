@@ -28,7 +28,6 @@
 
 static reloc_howto_type nxu16_elf_howto_table [] =
   {
-    /* This reloc does nothing.  */
     HOWTO (R_NXU16_NONE,	   /* type */
            0,			   /* rightshift */
            3,			   /* size (0 = byte, 1 = short, 2 = long) */
@@ -42,51 +41,6 @@ static reloc_howto_type nxu16_elf_howto_table [] =
            0,			   /* src_mask */
            0,			   /* dst_mask */
            false),		   /* pcrel_offset */
-
-    /* A 16 bit absolute relocation.  */
-    HOWTO (R_NXU16_16,		       /* type */
-           0,			       /* rightshift */
-           1,			       /* size (0 = byte, 1 = short, 2 = long) */
-           16,			       /* bitsize */
-           false,		       /* pc_relative */
-           0,			       /* bitpos */
-           complain_overflow_bitfield, /* complain_on_overflow */
-           bfd_elf_generic_reloc,      /* special_function */
-           "R_NXU16_16",	       /* name */
-           false,		       /* partial_inplace */
-           0x0000,		       /* src_mask */
-           0xffff,		       /* dst_mask */
-           false),		       /* pcrel_offset */
-
-    /* A 32 bit absolute relocation.  */
-    HOWTO (R_NXU16_32,		       /* type */
-           0,			       /* rightshift */
-           2,			       /* size (0 = byte, 1 = short, 2 = long) */
-           32,			       /* bitsize */
-           false,		       /* pc_relative */
-           0,			       /* bitpos */
-           complain_overflow_bitfield, /* complain_on_overflow */
-           bfd_elf_generic_reloc,      /* special_function */
-           "R_NXU16_32",	       /* name */
-           false,		       /* partial_inplace */
-           0x00000000,		       /* src_mask */
-           0xffffffff,		       /* dst_mask */
-           false),		       /* pcrel_offset */
-
-    /* A 10 bit PC-relative relocation.  */
-    HOWTO (R_NXU16_PCREL10,	     /* type.  */
-           1,			     /* rightshift.  */
-           1,			     /* size (0 = byte, 1 = short, 2 = long).  */
-           10,			     /* bitsize.  */
-           true,		     /* pc_relative.  */
-           0,			     /* bitpos.  */
-           complain_overflow_signed, /* complain_on_overflow.  */
-           bfd_elf_generic_reloc,    /* special_function.  */
-           "R_NXU16_PCREL10",	     /* name.  */
-           false,		     /* partial_inplace.  */
-           0,			     /* src_mask.  */
-           0x000003FF,		     /* dst_mask.  */
-           true),		     /* pcrel_offset.  */
   };
 
 /* Map BFD reloc types to nxu16 ELF reloc types.  */
@@ -99,10 +53,7 @@ struct nxu16_reloc_map
 
 static const struct nxu16_reloc_map nxu16_reloc_map [] =
   {
-    { BFD_RELOC_NONE,	       R_NXU16_NONE },
-    { BFD_RELOC_16,	       R_NXU16_16 },
-    { BFD_RELOC_32,	       R_NXU16_32 },
-    /* { BFD_RELOC_NXU16_10_PCREL, R_NXU16_PCREL10 }, */
+
   };
 
 static reloc_howto_type *

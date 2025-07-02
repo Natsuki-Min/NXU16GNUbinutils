@@ -31,7 +31,7 @@ PACKAGE_TARNAME = readline
 srcdir = ../../../readline/readline
 VPATH = ../../../readline/readline
 top_srcdir = ../../../readline/readline
-BUILD_DIR = /home/kali/binutils-gdb/buildavr/readline/readline
+BUILD_DIR = /home/kali/NXU16GNUbinutils/buildavr/readline/readline
 
 INSTALL = /usr/bin/install -c
 INSTALL_PROGRAM = /usr/bin/install -c
