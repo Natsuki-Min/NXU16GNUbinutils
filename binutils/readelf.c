@@ -143,6 +143,7 @@
 #include "elf/nds32.h"
 #include "elf/nfp.h"
 #include "elf/nios2.h"
+#include "elf/nxu16.h"
 #include "elf/or1k.h"
 #include "elf/pj.h"
 #include "elf/ppc.h"
@@ -2168,6 +2169,10 @@ dump_relocations (Filedata *          filedata,
 	  rtype = elf_moxie_reloc_type (type);
 	  break;
 
+	case EM_NXU16:
+	  rtype = elf_nxu16_reloc_type (type);
+	  break;
+
 	case EM_MSP430:
 	  if (uses_msp430x_relocs (filedata))
 	    {
@@ -3417,6 +3422,7 @@ get_machine_name (unsigned e_machine)
     case EM_VISIUM:		return "CDS VISIUMcore processor";
     case EM_FT32:               return "FTDI Chip FT32";
     case EM_MOXIE:              return "Moxie";
+    case EM_NXU16:              return "ROHM/LAPIS nX-U16";
     case EM_AMDGPU: 	 	return "AMD GPU";
       /* 230 (all reserved) */
       /* 240 */

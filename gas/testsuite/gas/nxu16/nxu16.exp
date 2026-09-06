@@ -1,0 +1,9 @@
+# Copyright (C) 2025 Free Software Foundation, Inc.
+
+if { [istarget nxu16-*-*] } then {
+run_dump_test "expressions"
+run_dump_test "boundaries"
+run_dump_test "cross-section-branch"
+run_dump_test "far-memory"
+run_dump_test "short-displacement"
+}

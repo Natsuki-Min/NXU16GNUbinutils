@@ -28,10 +28,27 @@
 #define TARGET_ARCH bfd_arch_nxu16
 
 #define md_undefined_symbol(NAME)           0
+extern const relax_typeS md_relax_table[];
+#define TC_GENERIC_RELAX_TABLE md_relax_table
+#define MD_APPLY_SYM_VALUE(FIX) 0
 
-/* These macros must be defined, but is will be a fatal assembler
-   error if we ever hit them.  */
-#define md_estimate_size_before_relax(A, B) (as_fatal (_("estimate size\n")), 0)
-#define md_convert_frag(B, S, F)            as_fatal (_("convert_frag\n"))
+typedef struct
+{
+  const char *name;
+  int nbytes;
+  bfd_reloc_code_real_type reloc;
+} nxu16_exp_mod_data_t;
+
+#define TC_PARSE_CONS_RETURN_TYPE const nxu16_exp_mod_data_t *
+#define TC_PARSE_CONS_RETURN_NONE nxu16_exp_mod_data
+#define TC_PARSE_CONS_EXPRESSION(EXP, N) \
+  nxu16_parse_cons_expression ((EXP), (N))
+#define TC_CONS_FIX_NEW nxu16_cons_fix_new
+
+extern const nxu16_exp_mod_data_t *
+  nxu16_parse_cons_expression (expressionS *, int);
+extern const nxu16_exp_mod_data_t nxu16_exp_mod_data[];
+extern void nxu16_cons_fix_new (fragS *, int, int, expressionS *,
+			       const nxu16_exp_mod_data_t *);
 
 #define md_section_align(SEGMENT, SIZE)     (SIZE)

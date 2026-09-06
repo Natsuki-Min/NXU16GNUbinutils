@@ -186,8 +186,8 @@ const nxu16_opc_info_t nxu16_opc_info[62] =//IMM MUST AFTER REG,otherwise it wil
         ),
         // MOV SP,ERn
         COMB(0xA10A, 0xFF1F, 2, NULL,
-            ARG(ARG_REG_ERn, 0x00E0),
-            ARG(ARG_REG_SP, 0x0000)
+	    ARG(ARG_REG_SP, 0x0000),
+	    ARG(ARG_REG_ERn, 0x00E0)
         ),
         // MOV PSW,Rn
         COMB(0xA00B, 0xFF0F, 2, NULL,
@@ -249,6 +249,16 @@ const nxu16_opc_info_t nxu16_opc_info[62] =//IMM MUST AFTER REG,otherwise it wil
     /* === Load/Store Instructions === */
     // L instructions (memory to register)
     INSTR("l",
+	// L ERn,Rd:[ERm]
+	COMB(0x900F9002, 0xFF0FF11F, 4, NULL,
+	    ARG(ARG_REG_ERn, 0x00000E00),
+	    ARG(ARG_MEM_RnERn, 0x00F000E0)
+	),
+	// L Rn,Rd:[ERm]
+	COMB(0x900F9000, 0xFF0FF01F, 4, NULL,
+	    ARG(ARG_REG_Rn, 0x00000F00),
+	    ARG(ARG_MEM_RnERn, 0x00F000E0)
+	),
         // L ERn,[EA]
         COMB(0x9032, 0xF1FF, 2, NULL,
             ARG(ARG_REG_ERn, 0x0E00),
@@ -262,12 +272,7 @@ const nxu16_opc_info_t nxu16_opc_info[62] =//IMM MUST AFTER REG,otherwise it wil
         // L ERn,[ERn]
         COMB(0x9002, 0xF11F, 2, NULL,
             ARG(ARG_REG_ERn, 0x0E00),
-            ARG(ARG_MEM_ERn, 0x00E0)
-        ),
-        // L ERn,Disp16[ERn]
-        COMB(0xA0080000, 0xF11F0000, 4, NULL,
-            ARG(ARG_REG_ERn, 0x0E000000),
-            ARG(ARG_MEM_ERnDisp16, 0x00E0FFFF)
+	    ARG(ARG_MEM_ERn, 0x00E0)
         ),
         // L ERn,Disp6[BP]
         COMB(0xB000, 0xF1C0, 2, NULL,
@@ -278,6 +283,11 @@ const nxu16_opc_info_t nxu16_opc_info[62] =//IMM MUST AFTER REG,otherwise it wil
         COMB(0xB040, 0xF1C0, 2, NULL,
             ARG(ARG_REG_ERn, 0x0E00),
             ARG(ARG_MEM_FPDisp6, 0x003F)
+        ),
+        // L ERn,Disp16[ERn]
+        COMB(0xA0080000, 0xF11F0000, 4, NULL,
+            ARG(ARG_REG_ERn, 0x0E000000),
+            ARG(ARG_MEM_ERnDisp16, 0x00E0FFFF)
         ),
         // L ERn,Dadr
         COMB(0x90120000, 0xF1FF0000, 4, NULL,
@@ -297,12 +307,7 @@ const nxu16_opc_info_t nxu16_opc_info[62] =//IMM MUST AFTER REG,otherwise it wil
         // L Rn,[ERn]
         COMB(0x9000, 0xF01F, 2, NULL,
             ARG(ARG_REG_Rn, 0x0F00),
-            ARG(ARG_REG_ERn, 0x00E0)
-        ),
-        // L Rn,Disp16[ERn]
-        COMB(0x90080000, 0xF01F0000, 4, NULL,
-            ARG(ARG_REG_Rn, 0x0F000000),
-            ARG(ARG_MEM_ERnDisp16, 0x00E0FFFF)
+	    ARG(ARG_MEM_ERn, 0x00E0)
         ),
         // L Rn,Disp6[BP]
         COMB(0xD000, 0xF0C0, 2, NULL,
@@ -313,6 +318,11 @@ const nxu16_opc_info_t nxu16_opc_info[62] =//IMM MUST AFTER REG,otherwise it wil
         COMB(0xD040, 0xF0C0, 2, NULL,
             ARG(ARG_REG_Rn, 0x0F00),
             ARG(ARG_MEM_FPDisp6, 0x003F)
+        ),
+        // L Rn,Disp16[ERn]
+        COMB(0x90080000, 0xF01F0000, 4, NULL,
+            ARG(ARG_REG_Rn, 0x0F000000),
+            ARG(ARG_MEM_ERnDisp16, 0x00E0FFFF)
         ),
         // L Rn,Dadr
         COMB(0x90100000, 0xF0FF0000, 4, NULL,
@@ -383,6 +393,16 @@ const nxu16_opc_info_t nxu16_opc_info[62] =//IMM MUST AFTER REG,otherwise it wil
 
     // ST instructions (register to memory)
     INSTR("st",
+	// ST ERn,Rd:[ERm]
+	COMB(0x900F9003, 0xFF0FF11F, 4, NULL,
+	    ARG(ARG_REG_ERn, 0x00000E00),
+	    ARG(ARG_MEM_RnERn, 0x00F000E0)
+	),
+	// ST Rn,Rd:[ERm]
+	COMB(0x900F9001, 0xFF0FF01F, 4, NULL,
+	    ARG(ARG_REG_Rn, 0x00000F00),
+	    ARG(ARG_MEM_RnERn, 0x00F000E0)
+	),
         // ST ERn,[EA]
         COMB(0x9033, 0xF1FF, 2, NULL,
             ARG(ARG_REG_ERn, 0x0E00),
@@ -396,12 +416,7 @@ const nxu16_opc_info_t nxu16_opc_info[62] =//IMM MUST AFTER REG,otherwise it wil
         // ST ERn,[ERn]
         COMB(0x9003, 0xF11F, 2, NULL,
             ARG(ARG_REG_ERn, 0x0E00),
-            ARG(ARG_MEM_ERn, 0x00E0)
-        ),
-        // ST ERn,Disp16[ERn]
-        COMB(0xA0090000, 0xF11F0000, 4, NULL,
-            ARG(ARG_REG_ERn, 0x0E000000),
-            ARG(ARG_MEM_ERnDisp16, 0x00E0FFFF)
+	    ARG(ARG_MEM_ERn, 0x00E0)
         ),
         // ST ERn,Disp6[BP]
         COMB(0xB080, 0xF1C0, 2, NULL,
@@ -412,6 +427,11 @@ const nxu16_opc_info_t nxu16_opc_info[62] =//IMM MUST AFTER REG,otherwise it wil
         COMB(0xB0C0, 0xF1C0, 2, NULL,
             ARG(ARG_REG_ERn, 0x0E00),
             ARG(ARG_MEM_FPDisp6, 0x003F)
+        ),
+        // ST ERn,Disp16[ERn]
+        COMB(0xA0090000, 0xF11F0000, 4, NULL,
+            ARG(ARG_REG_ERn, 0x0E000000),
+            ARG(ARG_MEM_ERnDisp16, 0x00E0FFFF)
         ),
         // ST ERn,Dadr
         COMB(0x90130000, 0xF1FF0000, 4, NULL,
@@ -431,12 +451,7 @@ const nxu16_opc_info_t nxu16_opc_info[62] =//IMM MUST AFTER REG,otherwise it wil
         // ST Rn,[ERn]
         COMB(0x9001, 0xF01F, 2, NULL,
             ARG(ARG_REG_Rn, 0x0F00),
-            ARG(ARG_REG_ERn, 0x00E0)
-        ),
-        // ST Rn,Disp16[ERn]
-        COMB(0x90090000, 0xF01F0000, 4, NULL,
-            ARG(ARG_REG_Rn, 0x0F000000),
-            ARG(ARG_MEM_ERnDisp16, 0x00E0FFFF)
+	    ARG(ARG_MEM_ERn, 0x00E0)
         ),
         // ST Rn,Disp6[BP]
         COMB(0xD080, 0xF0C0, 2, NULL,
@@ -447,6 +462,11 @@ const nxu16_opc_info_t nxu16_opc_info[62] =//IMM MUST AFTER REG,otherwise it wil
         COMB(0xD0C0, 0xF0C0, 2, NULL,
             ARG(ARG_REG_Rn, 0x0F00),
             ARG(ARG_MEM_FPDisp6, 0x003F)
+        ),
+        // ST Rn,Disp16[ERn]
+        COMB(0x90090000, 0xF01F0000, 4, NULL,
+            ARG(ARG_REG_Rn, 0x0F000000),
+            ARG(ARG_MEM_ERnDisp16, 0x00E0FFFF)
         ),
         // ST Rn,Dadr
         COMB(0x90110000, 0xF0FF0000, 4, NULL,
@@ -568,11 +588,14 @@ const nxu16_opc_info_t nxu16_opc_info[62] =//IMM MUST AFTER REG,otherwise it wil
         COMB(0xF002, 0xFF1F, 2, NULL,
             ARG(ARG_REG_ERn, 0x00E0)
         ),
+	/* Plain `b label' is the optimized relative form.  GAS relaxes it
+	   to B Cadr when the signed eight-bit halfword displacement does
+	   not fit.  Keep this before Cadr so symbolic operands select it.  */
+	COMB(0xCE00, 0xFF00, 2, NULL, ARG(ARG_FLASH_Radr, 0x00FF)),
         // B Cadr
         COMB(0xF0000000, 0xF0FF0000, 4, NULL,
             ARG(ARG_FLASH_Cadr,0x0F00FFFF)
-        ),
-        COMB(0xCE00, 0xFF00, 2, NULL, ARG(ARG_FLASH_Radr, 0x00FF))
+	)
 
     ),
 
@@ -618,7 +641,6 @@ const nxu16_opc_info_t nxu16_opc_info[62] =//IMM MUST AFTER REG,otherwise it wil
             ARG(ARG_IMM3, 0x0070)
         )
     ),
-
     INSTR("sllc",
         // SLLC Rn,Rn
         COMB(0x800B, 0xF00F, 2, NULL,

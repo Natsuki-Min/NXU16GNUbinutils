@@ -141,25 +141,6 @@ ENABLE_INITFINI_ARRAY=$5
 shift 5
 EMULATION_NAME=$1
 TOOL_LIB=$2
-# ========== 打印所有输入参数 ==========
-echo "DEBUG: ======== 输入参数 ========"
-echo "DEBUG: srcdir=$srcdir"
-echo "DEBUG: libdir=$libdir"
-echo "DEBUG: prefix=$prefix"
-echo "DEBUG: exec_prefix=$exec_prefix"
-echo "DEBUG: host=$host"
-echo "DEBUG: target=$target"
-echo "DEBUG: target_alias=$target_alias"
-echo "DEBUG: DEPDIR=$DEPDIR"
-echo "DEBUG: LIB_PATH=$LIB_PATH"
-echo "DEBUG: EMULATION_LIBPATH=$EMULATION_LIBPATH"
-echo "DEBUG: NATIVE_LIB_DIRS=$NATIVE_LIB_DIRS"
-echo "DEBUG: use_sysroot=$use_sysroot"
-echo "DEBUG: ENABLE_INITFINI_ARRAY=$ENABLE_INITFINI_ARRAY"
-echo "DEBUG: EMULATION_NAME=$EMULATION_NAME"
-echo "DEBUG: TOOL_LIB=$TOOL_LIB"
-#exit
-# ========== 源文件加载函数 ==========
 source_sh()
 {
   if test -n "${DEPDIR}"; then

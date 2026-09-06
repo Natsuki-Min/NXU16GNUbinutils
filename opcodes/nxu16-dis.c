@@ -20,7 +20,7 @@
 
 #include "sysdep.h"
 #include <stdio.h>
-#include<stdint.h>
+#include <stdint.h>
 #include <string.h>
 #include "opintl.h"
 #include "libiberty.h"
@@ -606,9 +606,9 @@ static uint8_t* decode(char* output, uint8_t* buf, uint32_t pc) {
 	}
 	if ((buf[0] & 0b11111111) == 0b10001110 && (buf[1] & 0b11110000) == 0b11110000) {
 		int l = buf[1] >> 3 & 0b1, e = buf[1] >> 2 & 0b1, p = buf[1] >> 1 & 0b1, a = buf[1] & 0b1;
-		sprintf(output, "POP    %s%s%s%s",
-			 (p ? "ELR " : ""),
-			 (e ? "EPSW " : ""),
+		sprintf(output, "POP     %s%s%s%s",
+			 (p ? "PC " : ""),
+			 (e ? "PSW " : ""),
 			 (l ? "LR " : ""),
 			 (a ? "EA " : ""));
 		if (p) {
@@ -884,7 +884,7 @@ static uint8_t* decode(char* output, uint8_t* buf, uint32_t pc) {
 	}
 	if ((buf[0] & 0b00011111) == 0b00001000 && (buf[1] & 0b11110001) == 0b10100000 && (buf[2] & 0b00000000) == 0b00000000 && (buf[3] & 0b00000000) == 0b00000000) {
 		int D = buf[2] >> 0 & 0b11111111, E = buf[3] >> 0 & 0b11111111, m = buf[0] >> 5 & 0b111, n = buf[1] >> 1 & 0b111;
-    sprintf(output, "L       ER%d, %sER%d[%s]", n * 2, dsr_prefix, m * 2, signedtohex(E * 256 + D, 16));
+    sprintf(output, "L       ER%d, %s%04X[ER%d]", n * 2, dsr_prefix, E * 256 + D,m*2);
 		buf += 4;
 		return buf;
 	}
@@ -896,7 +896,7 @@ static uint8_t* decode(char* output, uint8_t* buf, uint32_t pc) {
 	}
 	if ((buf[0] & 0b00011111) == 0b00001000 && (buf[1] & 0b11110000) == 0b10010000 && (buf[2] & 0b00000000) == 0b00000000 && (buf[3] & 0b00000000) == 0b00000000) {
 		int D = buf[2] >> 0 & 0b11111111, E = buf[3] >> 0 & 0b11111111, m = buf[0] >> 5 & 0b111, n = buf[1] >> 0 & 0b1111;
-    sprintf(output, "L       R%d, %sER%d[%s]", n, dsr_prefix, m * 2, signedtohex(E * 256 + D, 16));
+      sprintf(output, "L       R%d, %s%04X[ER%d]", n , dsr_prefix, E * 256 + D,m*2);
 		buf += 4;
 		return buf;
 	}
@@ -908,7 +908,7 @@ static uint8_t* decode(char* output, uint8_t* buf, uint32_t pc) {
 	}
 	if ((buf[0] & 0b00011111) == 0b00001001 && (buf[1] & 0b11110001) == 0b10100000 && (buf[2] & 0b00000000) == 0b00000000 && (buf[3] & 0b00000000) == 0b00000000) {
 		int D = buf[2] >> 0 & 0b11111111, E = buf[3] >> 0 & 0b11111111, m = buf[0] >> 5 & 0b111, n = buf[1] >> 1 & 0b111;
-    sprintf(output, "ST      ER%d, %sER%d[%s]", n * 2, dsr_prefix, m * 2, signedtohex(E * 256 + D, 16));
+    sprintf(output, "ST       ER%d, %s%04X[ER%d]", n * 2, dsr_prefix, E * 256 + D,m*2);
 		buf += 4;
 		return buf;
 	}
@@ -920,7 +920,7 @@ static uint8_t* decode(char* output, uint8_t* buf, uint32_t pc) {
 	}
 	if ((buf[0] & 0b00011111) == 0b00001001 && (buf[1] & 0b11110000) == 0b10010000 && (buf[2] & 0b00000000) == 0b00000000 && (buf[3] & 0b00000000) == 0b00000000) {
 		int D = buf[2] >> 0 & 0b11111111, E = buf[3] >> 0 & 0b11111111, m = buf[0] >> 5 & 0b111, n = buf[1] >> 0 & 0b1111;
-    sprintf(output, "ST      R%d, %sER%d[%s]", n, dsr_prefix, m * 2, signedtohex(E * 256 + D, 16));
+    sprintf(output, "ST       R%d, %s%04X[ER%d]", n , dsr_prefix, E * 256 + D,m*2);
 		buf += 4;
 		return buf;
 	}
@@ -1015,7 +1015,13 @@ iword = bfd_getl16 (buffer);
 insn[0]=iword;
 str=decode(ptrstr,(uint8_t*)insn,(uint32_t)memaddr);
 if(str==(uint8_t*)insn+2){fpr (stream, "%s",ptrstr);return 2;}
-  if ((status = info->read_memory_func (memaddr, buffer,
+if(str==(uint8_t*)insn+8)
+  {
+    fpr (stream, "%s", ptrstr);
+    info->print_address_func ((bfd_vma) baddr, info);
+    return 2;
+  }
+  if ((status = info->read_memory_func (memaddr+2, buffer,
 					2, info)) != 0)
     {
       info->memory_error_func (status, memaddr, info);
@@ -1026,7 +1032,13 @@ iword = bfd_getl16 (buffer);
 insn[1]=iword;
 str=decode(ptrstr,(uint8_t*)insn,(uint32_t)memaddr);
 if(str==(uint8_t*)insn+4){fpr (stream, "%s",ptrstr);return 4;}
-  if ((status = info->read_memory_func (memaddr, buffer,
+if(str==(uint8_t*)insn+10)
+  {
+    fpr (stream, "%s", ptrstr);
+    info->print_address_func ((bfd_vma) baddr, info);
+    return 4;
+  }
+  if ((status = info->read_memory_func (memaddr+4, buffer,
 					2, info)) != 0)
     {
       info->memory_error_func (status, memaddr, info);

@@ -1,0 +1,10 @@
+# Expect script for nX-U16 linker tests.
+
+if ![istarget "nxu16-*-*"] then {
+    return
+}
+
+set nxu16_test_list [lsort [glob -nocomplain $srcdir/$subdir/*.d]]
+foreach nxu16_test $nxu16_test_list {
+    run_dump_test [file rootname $nxu16_test]
+}

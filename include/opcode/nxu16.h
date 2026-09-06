@@ -38,6 +38,10 @@ typedef enum {
     ARG_MEM_EA,
     ARG_MEM_EAP,
     ARG_MEM_ERn,
+    /* Register-selected DSR prefix followed by an ER indirect address,
+       written Rn:[ERm].  The value packs ERm in bits 0..2 and Rn in
+       bits 3..6 for scattering into the two instruction words.  */
+    ARG_MEM_RnERn,
     //-----CAN ACCEPT SYMBOL-----
     ARG_IMM3,
     ARG_IMM6,
